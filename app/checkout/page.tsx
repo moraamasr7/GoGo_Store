@@ -9,6 +9,7 @@ import { useCart } from '@/components/cart/CartContext';
 import { formatPrice } from '@/lib/utils';
 import { toast } from 'react-hot-toast';
 import { StorePublicSettings } from '@/types/database';
+import { Button } from '@/components/ui/Button';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -376,20 +377,16 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <button
+            <Button
               type="submit"
-              disabled={isSubmitting}
-              className="w-full py-4 px-6 rounded-xl bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 font-bold text-sm flex items-center justify-center gap-2 hover:bg-stone-800 dark:hover:bg-brass-400 transition-all shadow-md active:scale-95 disabled:opacity-50"
+              variant="primary"
+              size="lg"
+              isLoading={isSubmitting}
+              className="w-full shadow-md py-4"
+              rightIcon={<CheckCircle2 className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
             >
-              {isSubmitting ? (
-                <span>جاري تأكيد وتسجيل الطلب...</span>
-              ) : (
-                <>
-                  <span>تأكيد الطلب وإرسال الإيصال</span>
-                  <CheckCircle2 className="w-4 h-4 text-brass-400 dark:text-stone-950" />
-                </>
-              )}
-            </button>
+              تأكيد الطلب وإرسال الإيصال
+            </Button>
 
             <div className="text-[11px] text-stone-500 dark:text-stone-400 space-y-1.5 pt-2 border-t border-stone-100 dark:border-stone-800">
               <div className="flex items-center gap-1.5">
