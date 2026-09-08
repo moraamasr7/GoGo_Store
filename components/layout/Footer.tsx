@@ -4,9 +4,18 @@ import { Sparkles, Heart, MessageCircle } from 'lucide-react';
 import { getPublicSettings } from '@/lib/supabase';
 import { generateWhatsAppInquiryUrl } from '@/lib/whatsapp';
 
-export default async function Footer() {
+import Image from 'next/image';
+
+interface FooterProps {
+  logoUrl?: string;
+  storeName?: string;
+}
+
+export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
   const settings = await getPublicSettings();
   const whatsappUrl = generateWhatsAppInquiryUrl(settings.whatsapp_number);
+  const activeLogo = logoUrl || settings.header_logo_url;
+  const activeStoreName = storeName || settings.store_name;
 
   return (
     <footer className="bg-stone-900 dark:bg-stone-950 text-stone-300 pt-16 pb-12 mt-20 border-t border-stone-800 dark:border-stone-800/80 transition-colors">
@@ -16,10 +25,21 @@ export default async function Footer() {
           {/* Brand & Handmade statement */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-brass-500 flex items-center justify-center text-stone-950 font-black text-base shadow-sm">
-                G
-              </div>
-              <h3 className="font-extrabold text-white text-lg tracking-wide">GOGO CONCRETE</h3>
+              {activeLogo ? (
+                <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow-sm border border-stone-700">
+                  <Image
+                    src={activeLogo}
+                    alt={activeStoreName}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ) : (
+                <div className="w-9 h-9 rounded-xl bg-brass-500 flex items-center justify-center text-stone-950 font-black text-base shadow-sm">
+                  G
+                </div>
+              )}
+              <h3 className="font-extrabold text-white text-lg tracking-wide">{activeStoreName}</h3>
             </div>
             <p className="text-stone-400 text-xs sm:text-sm leading-relaxed mb-4">
               شغل كونكريت وديكور يدوي من البيت بأشكال كتير، تصميمات مودرن وبسيطة وتشطيب ناعم يشبه السيراميك، معمول بحب لكل بيت ومساحة.

@@ -90,4 +90,6 @@ export interface StorePublicSettings {
   payment_instructions: string;
   shipping_instructions: string;
   maintenance_mode: boolean;
+  header_logo_url?: string;
+  hero_banner_url?: string;
 }

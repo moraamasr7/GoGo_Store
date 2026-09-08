@@ -127,8 +127,8 @@ export default async function HomePage() {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-xl shadow-stone-900/10 dark:shadow-stone-950/50 border-4 border-white dark:border-stone-800 bg-sand-200 dark:bg-stone-800">
                 <Image
-                  src="https://images.unsplash.com/photo-1594913785162-e678a0c23ee9?auto=format&fit=crop&w=1000&q=80"
-                  alt="Gogo Concrete تحف وديكورات هاند ميد"
+                  src={settings.hero_banner_url || "https://images.unsplash.com/photo-1594913785162-e678a0c23ee9?auto=format&fit=crop&w=1000&q=80"}
+                  alt={`${settings.store_name} تحف وديكورات هاند ميد`}
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 40vw"

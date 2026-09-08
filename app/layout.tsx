@@ -68,11 +68,11 @@ export default async function RootLayout({
             </div>
           ) : (
             <CartProvider>
-              <Header />
+              <Header logoUrl={settings.header_logo_url} storeName={settings.store_name} />
               <main className="flex-1">
                 {children}
               </main>
-              <Footer />
+              <Footer logoUrl={settings.header_logo_url} storeName={settings.store_name} />
             </CartProvider>
           )}
         </ThemeProvider>

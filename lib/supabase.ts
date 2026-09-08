@@ -72,6 +72,8 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
       if (item.key === 'payment_instructions') result.payment_instructions = item.value;
       if (item.key === 'shipping_instructions') result.shipping_instructions = item.value;
       if (item.key === 'maintenance_mode') result.maintenance_mode = item.value === 'true';
+      if (item.key === 'header_logo_url') result.header_logo_url = item.value || undefined;
+      if (item.key === 'hero_banner_url') result.hero_banner_url = item.value || undefined;
     }
     return result;
   } catch {

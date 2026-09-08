@@ -7,7 +7,14 @@ import { ShoppingBag, Search, Sparkles } from 'lucide-react';
 import { useCart } from '@/components/cart/CartContext';
 import ThemeToggle from '@/components/theme/ThemeToggle';
 
-export default function Header() {
+import Image from 'next/image';
+
+interface HeaderProps {
+  logoUrl?: string;
+  storeName?: string;
+}
+
+export default function Header({ logoUrl, storeName }: HeaderProps) {
   const pathname = usePathname();
   const { itemCount } = useCart();
 
@@ -17,12 +24,23 @@ export default function Header() {
         
         {/* Brand Logo & Tagline */}
         <Link href="/" className="flex items-center gap-2.5 group">
-          <div className="w-10 h-10 rounded-xl bg-stone-800 dark:bg-stone-800 flex items-center justify-center text-sand-50 shadow-sm group-hover:bg-stone-900 dark:group-hover:bg-stone-700 transition-colors border border-stone-700/50">
-            <span className="font-extrabold text-lg tracking-wider text-brass-400">G</span>
-          </div>
+          {logoUrl ? (
+            <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-stone-200 dark:border-stone-700">
+              <Image
+                src={logoUrl}
+                alt={storeName || 'GOGO CONCRETE'}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <div className="w-10 h-10 rounded-xl bg-stone-800 dark:bg-stone-800 flex items-center justify-center text-sand-50 shadow-sm group-hover:bg-stone-900 dark:group-hover:bg-stone-700 transition-colors border border-stone-700/50">
+              <span className="font-extrabold text-lg tracking-wider text-brass-400">G</span>
+            </div>
+          )}
           <div>
             <div className="font-bold text-lg tracking-wide text-stone-900 dark:text-white flex items-center gap-1.5">
-              <span>GOGO CONCRETE</span>
+              <span>{storeName || 'GOGO CONCRETE'}</span>
               <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-sand-200 font-medium">Handmade</span>
             </div>
             <p className="text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">تحف وديكورات معمولـة بحب 🤍</p>
