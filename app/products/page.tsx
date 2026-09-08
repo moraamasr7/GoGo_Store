@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'next/link';
 import { getActiveProducts } from '@/lib/supabase';
 import ProductCard from '@/components/products/ProductCard';
-import { CategoryKey } from '@/types/database';
 
 export const revalidate = 60;
 
@@ -30,10 +29,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
       
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold text-stone-900 mb-2">
+        <h1 className="text-3xl sm:text-4xl font-black text-stone-900 dark:text-white mb-2 tracking-tight">
           مجموعة قطع الكونكريت
         </h1>
-        <p className="text-sm text-stone-600">
+        <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400">
           تصفح جميع القطع المصنوعة يدوياً المتاحة للطلب الفوري أو الصب المخصص
         </p>
       </div>
@@ -46,10 +45,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <Link
               key={cat.key}
               href={cat.key === 'all' ? '/products' : `/products?category=${cat.key}`}
-              className={`whitespace-nowrap px-4 py-2 rounded-xl text-xs font-semibold transition-all ${
+              className={`whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                 isActive
-                  ? 'bg-stone-900 text-sand-50 shadow-sm'
-                  : 'bg-white text-stone-700 hover:bg-stone-100 border border-stone-200'
+                  ? 'bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 shadow-sm'
+                  : 'bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 border border-stone-200 dark:border-stone-800'
               }`}
             >
               {cat.label}
@@ -60,11 +59,11 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
 
       {/* Products Grid */}
       {products.length === 0 ? (
-        <div className="text-center py-20 bg-white rounded-2xl border border-stone-200">
-          <p className="text-stone-500 text-sm mb-3">لا توجد منتجات ضمن هذه الفئة حالياً.</p>
+        <div className="text-center py-20 bg-white dark:bg-stone-900 rounded-3xl border border-stone-200 dark:border-stone-800">
+          <p className="text-stone-500 dark:text-stone-400 text-sm mb-3">لا توجد منتجات ضمن هذه الفئة حالياً.</p>
           <Link
             href="/products"
-            className="text-xs font-semibold text-stone-800 underline hover:text-stone-950"
+            className="text-xs font-bold text-stone-800 dark:text-brass-400 underline hover:text-stone-950"
           >
             عرض جميع المنتجات
           </Link>

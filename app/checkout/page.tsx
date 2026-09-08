@@ -99,193 +99,208 @@ export default function CheckoutPage() {
 
       toast.success('تم استلام طلبك بنجاح! ✨');
       clearCart();
-      const orderNumber = data.order?.order_number;
-      router.push(`/order/${orderNumber}`);
-    } catch (err: any) {
-      toast.error(err.message || 'حدث خطأ أثناء إتمام الطلب، يرجى المحاولة ثانية');
+      router.push(`/order/${data.order_number}`);
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'حدث خطأ أثناء إتمام الطلب';
+      toast.error(message);
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  if (!isLoading && items.length === 0) {
+  if (isLoading) {
+    return (
+      <div className="max-w-xl mx-auto px-4 py-20 text-center">
+        <div className="w-8 h-8 border-3 border-stone-800 dark:border-brass-400 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-sm text-stone-500 dark:text-stone-400">جاري التحميل...</p>
+      </div>
+    );
+  }
+
+  if (items.length === 0) {
     return (
       <div className="max-w-md mx-auto px-4 py-20 text-center">
-        <h1 className="text-xl font-bold text-stone-900 mb-2">لا توجد عناصر لإتمام الطلب</h1>
-        <p className="text-sm text-stone-500 mb-6">سلتك فارغة حالياً. يرجى اختيار المنتجات أولاً.</p>
+        <h1 className="text-xl font-bold text-stone-900 dark:text-white mb-2">لا توجد منتجات في السلة</h1>
+        <p className="text-sm text-stone-500 dark:text-stone-400 mb-6">يرجى إضافة قطع للطلب قبل الانتقال للدفع.</p>
         <Link
           href="/products"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-stone-900 text-sand-50 text-xs font-semibold"
+          className="inline-block px-5 py-2.5 rounded-xl bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 text-xs font-bold"
         >
-          <span>تصفح المنتجات</span>
-          <ArrowLeft className="w-4 h-4" />
+          تصفح المنتجات
         </Link>
       </div>
     );
   }
 
-  const vodafoneCash = settings?.vodafone_cash || '01012345678';
-  const instapay = settings?.instapay || 'gogo.concrete@instapay';
-
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12">
       
       <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-stone-900">إتمام الطلب وتأكيد العربون</h1>
-        <p className="text-xs sm:text-sm text-stone-500 mt-1">
-          أدخل بيانات الشحن وقم بتحويل العربون للبدء في صب ومعالجة طلبك اليدوي
+        <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+          إتمام الطلب وسداد العربون
+        </h1>
+        <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
+          خطوة واحدة تفصلك عن صب وتجهيز قطعتك المميزة
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Customer Info & Payment Upload */}
+        {/* Left/Main Column: Form Inputs */}
         <div className="lg:col-span-7 space-y-6">
           
-          {/* Customer Details Box */}
-          <div className="p-6 rounded-3xl bg-white border border-stone-200 shadow-sm space-y-4">
-            <h2 className="text-base font-bold text-stone-900 pb-3 border-b border-stone-100 flex items-center gap-2">
-              <span>1. بيانات العميل والشحن</span>
+          {/* 1. Customer Details Card */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-4">
+            <h2 className="text-sm font-black text-stone-900 dark:text-white flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 text-[11px] font-mono flex items-center justify-center">1</span>
+              <span>بيانات التوصيل والتواصل</span>
             </h2>
 
-            <div>
-              <label className="block text-xs font-bold text-stone-700 mb-1.5">
-                الاسم الكامل <span className="text-rose-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="customer_name"
-                required
-                placeholder="أدخل اسمك الكريم"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-stone-900 bg-sand-50/50"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-stone-700 mb-1.5">
-                رقم الهاتف (واتساب) <span className="text-rose-500">*</span>
-              </label>
-              <input
-                type="tel"
-                name="customer_phone"
-                required
-                dir="ltr"
-                placeholder="010XXXXXXXX"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm text-left focus:outline-none focus:ring-2 focus:ring-stone-900 bg-sand-50/50 font-mono"
-              />
-              <p className="text-[11px] text-stone-500 mt-1">
-                سنرسل لك تحديثات مراحل تنفيذ طلبك وصور القطع عبر واتساب على هذا الرقم.
-              </p>
-            </div>
-
-            <div>
-              <label className="block text-xs font-bold text-stone-700 mb-1.5">
-                عنوان التوصيل بالتفصيل <span className="text-rose-500">*</span>
-              </label>
-              <textarea
-                name="customer_address"
-                required
-                rows={2}
-                placeholder="المحافظة، المدينة، اسم الشارع، رقم العمارة والشقة"
-                className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-stone-900 bg-sand-50/50"
-              />
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-3">
               <div>
-                <label className="block text-xs font-bold text-stone-700 mb-1.5">
-                  البريد الإلكتروني <span className="text-stone-400 font-normal">(اختياري)</span>
-                </label>
-                <input
-                  type="email"
-                  name="customer_email"
-                  dir="ltr"
-                  placeholder="name@example.com"
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-stone-900 bg-sand-50/50 text-left"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-stone-700 mb-1.5">
-                  ملاحظات خاصة <span className="text-stone-400 font-normal">(اختياري)</span>
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  الاسم بالكامل <span className="text-rose-500">*</span>
                 </label>
                 <input
                   type="text"
+                  name="customer_name"
+                  required
+                  placeholder="مثال: منى أحمد"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs focus:outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-brass-400 bg-stone-50/50 dark:bg-stone-800 dark:text-white"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
+                    رقم الهاتف / واتساب <span className="text-rose-500">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    name="customer_phone"
+                    required
+                    placeholder="010XXXXXXXX"
+                    dir="ltr"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs focus:outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-brass-400 bg-stone-50/50 dark:bg-stone-800 dark:text-white font-mono"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
+                    البريد الإلكتروني (اختياري)
+                  </label>
+                  <input
+                    type="email"
+                    name="customer_email"
+                    placeholder="example@mail.com"
+                    dir="ltr"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs focus:outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-brass-400 bg-stone-50/50 dark:bg-stone-800 dark:text-white font-mono"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  عنوان الشحن بالتفصيل <span className="text-rose-500">*</span>
+                </label>
+                <textarea
+                  name="customer_address"
+                  required
+                  rows={2}
+                  placeholder="المحافظة، المنطقة، اسم الشارع، رقم العمارة والشقة..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs focus:outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-brass-400 bg-stone-50/50 dark:bg-stone-800 dark:text-white"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-1">
+                  ملاحظات أو تخصيص للألوان (اختياري)
+                </label>
+                <textarea
                   name="customer_notes"
-                  placeholder="مثال: تغليف هدية، توصيل بعد الساعة 3..."
-                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 text-sm focus:outline-none focus:ring-2 focus:ring-stone-900 bg-sand-50/50"
+                  rows={2}
+                  placeholder="مثال: يرجى جعل الرخام رمادي فاتح مائل للأبيض مع خطوط ذهبية خفيفة..."
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs focus:outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-brass-400 bg-stone-50/50 dark:bg-stone-800 dark:text-white"
                 />
               </div>
             </div>
-
           </div>
 
-          {/* Payment Instructions & Receipt Upload */}
-          <div className="p-6 rounded-3xl bg-white border border-stone-200 shadow-sm space-y-5">
-            <h2 className="text-base font-bold text-stone-900 pb-3 border-b border-stone-100">
-              2. سداد العربون ({depositPercentage}%)
+          {/* 2. Payment & Deposit Transfer Instructions */}
+          <div className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-4">
+            <h2 className="text-sm font-black text-stone-900 dark:text-white flex items-center gap-2">
+              <span className="w-5 h-5 rounded-full bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 text-[11px] font-mono flex items-center justify-center">2</span>
+              <span>تحويل العربون المطلوب ({formatPrice(depositAmount)})</span>
             </h2>
 
-            {/* Instruction Banner */}
-            <div className="p-4 rounded-2xl bg-sand-100 border border-sand-200 text-xs text-stone-800 space-y-3">
-              <p className="font-semibold text-stone-900 text-sm">
-                مبلغ العربون المطلوب الآن: <span className="font-mono font-bold text-stone-950">{formatPrice(depositAmount)}</span>
-              </p>
+            <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+              يرجى تحويل مبلغ العربون (أو القيمة كاملة إن أردت) عبر إحدى الوسائل التالية، ثم رفع صورة التحويل بالأسفل:
+            </p>
 
-              <div className="space-y-2">
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-stone-200">
-                  <div>
-                    <span className="text-stone-500 block text-[10px]">فودافون كاش:</span>
-                    <span className="font-mono font-bold text-stone-900 text-sm" dir="ltr">{vodafoneCash}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              
+              {/* Vodafone Cash Box */}
+              <div className="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/80 border border-stone-200/90 dark:border-stone-700 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-bold text-stone-900 dark:text-white">فودافون كاش</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 font-semibold">محفظة</span>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => copyToClipboard(vodafoneCash, 'voda')}
-                    className="p-1.5 rounded-lg hover:bg-stone-100 text-stone-600 flex items-center gap-1 text-[11px]"
-                  >
-                    {copiedKey === 'voda' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>نسخ</span>
-                  </button>
+                  <span className="font-mono text-sm font-bold text-stone-950 dark:text-white tracking-wider block mt-1" dir="ltr">
+                    {settings?.vodafone_cash || '010XXXXXXXX'}
+                  </span>
                 </div>
-
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-white border border-stone-200">
-                  <div>
-                    <span className="text-stone-500 block text-[10px]">إنستاباي (InstaPay):</span>
-                    <span className="font-mono font-bold text-stone-900 text-sm" dir="ltr">{instapay}</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => copyToClipboard(instapay, 'insta')}
-                    className="p-1.5 rounded-lg hover:bg-stone-100 text-stone-600 flex items-center gap-1 text-[11px]"
-                  >
-                    {copiedKey === 'insta' ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>نسخ</span>
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(settings?.vodafone_cash || '', 'vodafone')}
+                  className="mt-3 w-full py-1.5 px-3 rounded-lg bg-white dark:bg-stone-700 border border-stone-200 dark:border-stone-600 text-stone-700 dark:text-stone-200 text-xs font-bold hover:bg-stone-100 dark:hover:bg-stone-600 flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  {copiedKey === 'vodafone' ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedKey === 'vodafone' ? 'تم النسخ!' : 'نسخ الرقم'}</span>
+                </button>
               </div>
 
-              <p className="text-[11px] text-stone-600 leading-normal">
-                {settings?.payment_instructions || 'يرجى تحويل مبلغ العربون، ثم رفع لقطة شاشة للإيصال لتأكيد بدء الصب اليدوي.'}
-              </p>
+              {/* InstaPay Box */}
+              <div className="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/80 border border-stone-200/90 dark:border-stone-700 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-bold text-stone-900 dark:text-white">إنستاباي (InstaPay)</span>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 font-semibold">IPA</span>
+                  </div>
+                  <span className="font-mono text-xs font-bold text-stone-950 dark:text-white block mt-1" dir="ltr">
+                    {settings?.instapay || 'gogo@instapay'}
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => copyToClipboard(settings?.instapay || '', 'instapay')}
+                  className="mt-3 w-full py-1.5 px-3 rounded-lg bg-white dark:bg-stone-700 border border-stone-200 dark:border-stone-600 text-stone-700 dark:text-stone-200 text-xs font-bold hover:bg-stone-100 dark:hover:bg-stone-600 flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  {copiedKey === 'instapay' ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedKey === 'instapay' ? 'تم النسخ!' : 'نسخ المعرف'}</span>
+                </button>
+              </div>
+
             </div>
 
-            {/* Receipt Upload Field */}
-            <div>
-              <label className="block text-xs font-bold text-stone-700 mb-2">
-                إرفاق لقطة شاشة لإيصال التحويل (Screenshot) <span className="text-stone-400 font-normal">(مستحسن للتأكيد الفوري)</span>
+            {/* 3. Screenshot Upload Box */}
+            <div className="pt-2">
+              <label className="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">
+                صورة إيصال التحويل (Screenshot) <span className="text-rose-500">*</span>
               </label>
 
-              <div className="relative border-2 border-dashed border-stone-300 hover:border-stone-500 rounded-2xl p-4 text-center transition-colors bg-sand-50/40">
+              <div className="border-2 border-dashed border-stone-300 dark:border-stone-700 rounded-2xl p-4 text-center hover:border-stone-400 dark:hover:border-stone-500 transition-colors bg-stone-50/50 dark:bg-stone-800/50">
                 <input
                   type="file"
+                  id="screenshot-input"
                   accept="image/jpeg,image/png,image/webp"
                   onChange={handleFileChange}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  className="hidden"
                 />
 
                 {screenshotPreview ? (
-                  <div className="flex items-center justify-center gap-4">
-                    <div className="relative w-16 h-16 rounded-xl overflow-hidden border border-stone-300 bg-white">
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="relative w-32 h-32 rounded-xl overflow-hidden border border-stone-200 dark:border-stone-700 shadow-sm">
                       <Image
                         src={screenshotPreview}
                         alt="إيصال التحويل"
@@ -293,23 +308,26 @@ export default function CheckoutPage() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="text-right">
-                      <p className="text-xs font-bold text-emerald-700 flex items-center gap-1">
-                        <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>تم اختيار صورة الإيصال</span>
-                      </p>
-                      <p className="text-[11px] text-stone-500 truncate max-w-[200px]">
-                        {screenshotFile?.name}
-                      </p>
-                      <span className="text-[10px] text-stone-400 underline">انقر للتغيير</span>
-                    </div>
+                    <label
+                      htmlFor="screenshot-input"
+                      className="text-xs text-brass-600 dark:text-brass-400 font-bold cursor-pointer hover:underline"
+                    >
+                      تغيير الصورة المرفقة
+                    </label>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center justify-center py-2">
-                    <Upload className="w-6 h-6 text-stone-400 mb-1.5" />
-                    <p className="text-xs font-semibold text-stone-700">اضغط لرفع لقطة الشاشة</p>
-                    <p className="text-[10px] text-stone-400 mt-0.5">JPG, PNG, WEBP حتى 5MB</p>
-                  </div>
+                  <label
+                    htmlFor="screenshot-input"
+                    className="flex flex-col items-center justify-center gap-2 cursor-pointer py-4"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-sand-200 dark:bg-stone-700 text-stone-700 dark:text-sand-100 flex items-center justify-center">
+                      <Upload className="w-5 h-5 text-stone-700 dark:text-brass-400" />
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-bold text-stone-900 dark:text-white">اضغط لرفع صورة الإيصال</span>
+                      <p className="text-stone-400 dark:text-stone-500 text-[11px] mt-0.5">JPG, PNG, WEBP حتى 5 ميجابايت</p>
+                    </div>
+                  </label>
                 )}
               </div>
             </div>
@@ -318,73 +336,74 @@ export default function CheckoutPage() {
 
         </div>
 
-        {/* Order Summary & Submit Button */}
-        <div className="lg:col-span-5 sticky top-24 space-y-4">
-          <div className="p-6 rounded-3xl bg-white border border-stone-200 shadow-sm space-y-4">
-            <h2 className="text-base font-bold text-stone-900 pb-3 border-b border-stone-100">
-              ملخص طلبك
+        {/* Right Column: Order Summary & Submit Button */}
+        <div className="lg:col-span-5 space-y-4 sticky top-24">
+          
+          <div className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-4">
+            <h2 className="text-sm font-black text-stone-900 dark:text-white border-b border-stone-100 dark:border-stone-800 pb-3">
+              مراجعة الطلب ({items.reduce((s, i) => s + i.quantity, 0)} قطعة)
             </h2>
 
-            <div className="max-h-60 overflow-y-auto space-y-3 divide-y divide-stone-100 pr-1">
+            {/* Items mini list */}
+            <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
               {items.map(({ product, quantity, selected_color }) => (
-                <div key={`${product.id}-${selected_color || ''}`} className="pt-2 flex justify-between text-xs">
-                  <div>
-                    <span className="font-semibold text-stone-900">{product.name_ar}</span>
-                    <span className="text-stone-400 mx-1">×</span>
-                    <span className="font-mono text-stone-600">{quantity}</span>
-                    {selected_color && (
-                      <span className="block text-[10px] text-stone-500">({selected_color})</span>
-                    )}
+                <div key={`${product.id}-${selected_color || ''}`} className="flex items-center justify-between text-xs">
+                  <div className="flex-1 pr-2">
+                    <p className="font-bold text-stone-900 dark:text-white line-clamp-1">{product.name_ar}</p>
+                    <p className="text-[11px] text-stone-400">
+                      {quantity} × {formatPrice(product.price)} {selected_color ? `(${selected_color})` : ''}
+                    </p>
                   </div>
-                  <span className="font-mono font-bold text-stone-900">
+                  <span className="font-mono font-bold text-stone-800 dark:text-stone-200">
                     {formatPrice(product.price * quantity)}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="pt-4 border-t border-stone-100 space-y-2 text-xs">
-              <div className="flex justify-between text-stone-600">
-                <span>الإجمالي:</span>
-                <span className="font-mono font-bold text-stone-900">{formatPrice(subtotal)}</span>
+            <div className="border-t border-stone-100 dark:border-stone-800 pt-3 space-y-2 text-xs">
+              <div className="flex justify-between text-stone-600 dark:text-stone-400">
+                <span>إجمالي الطلب:</span>
+                <span className="font-mono font-bold text-stone-900 dark:text-white">{formatPrice(subtotal)}</span>
               </div>
-              <div className="flex justify-between text-emerald-800 font-bold bg-emerald-50 p-2.5 rounded-xl border border-emerald-200">
+              <div className="flex justify-between font-bold text-stone-900 dark:text-white bg-sand-100 dark:bg-stone-800 p-3 rounded-xl border border-sand-200 dark:border-stone-700">
                 <span>العربون المطلوب الآن ({depositPercentage}%):</span>
-                <span className="font-mono text-sm">{formatPrice(depositAmount)}</span>
+                <span className="font-mono text-brass-600 dark:text-brass-400">{formatPrice(depositAmount)}</span>
               </div>
-              <div className="flex justify-between text-stone-600">
-                <span>المتبقي عند الاستلام:</span>
-                <span className="font-mono font-bold text-stone-800">{formatPrice(remainingAmount)}</span>
+              <div className="flex justify-between text-stone-500 dark:text-stone-400">
+                <span>المتبقي عند الشحن:</span>
+                <span className="font-mono">{formatPrice(remainingAmount)}</span>
               </div>
             </div>
 
-            <div className="pt-4">
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 px-6 rounded-xl bg-stone-900 text-sand-50 font-bold text-sm flex items-center justify-center gap-2 hover:bg-stone-800 transition-all shadow-md active:scale-95 disabled:opacity-50 cursor-pointer"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    <span>جاري حفظ الطلب والتحقق...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>تأكيد وإرسال الطلب</span>
-                    <ArrowLeft className="w-4 h-4 text-brass-400" />
-                  </>
-                )}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-4 px-6 rounded-xl bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 font-bold text-sm flex items-center justify-center gap-2 hover:bg-stone-800 dark:hover:bg-brass-400 transition-all shadow-md active:scale-95 disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <span>جاري تأكيد وتسجيل الطلب...</span>
+              ) : (
+                <>
+                  <span>تأكيد الطلب وإرسال الإيصال</span>
+                  <CheckCircle2 className="w-4 h-4 text-brass-400 dark:text-stone-950" />
+                </>
+              )}
+            </button>
 
-            <div className="pt-2 text-center">
-              <p className="text-[11px] text-stone-500 leading-tight">
-                🔒 طلبك محمي، وسيتم تأكيده والبدء في الصب اليدوي فور مراجعة التحويل.
-              </p>
+            <div className="text-[11px] text-stone-500 dark:text-stone-400 space-y-1.5 pt-2 border-t border-stone-100 dark:border-stone-800">
+              <div className="flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                <span>يتم مراجعة الإيصال وتأكيد بدء الصب خلال ساعتين.</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <AlertCircle className="w-3.5 h-3.5 text-brass-500 shrink-0" />
+                <span>ستحصل على رقم طلب لتتبع مراحل الصب والشحن فوراً.</span>
+              </div>
             </div>
 
           </div>
+
         </div>
 
       </form>

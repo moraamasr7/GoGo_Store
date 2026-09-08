@@ -5,7 +5,7 @@ import { ArrowLeft, Sparkles, Feather, Layers, ShieldCheck, Tag } from 'lucide-r
 import { getActiveProducts, getActiveOffers } from '@/lib/supabase';
 import ProductCard from '@/components/products/ProductCard';
 
-export const revalidate = 60; // Revalidate every minute
+export const revalidate = 60;
 
 export default async function HomePage() {
   const [products, offers] = await Promise.all([
@@ -35,32 +35,32 @@ export default async function HomePage() {
             
             {/* Text Column */}
             <div className="lg:col-span-7 flex flex-col items-start">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-200/80 border border-sand-300/60 text-stone-800 text-xs font-medium mb-6">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-200/80 dark:bg-stone-800 border border-sand-300/60 dark:border-stone-700 text-stone-800 dark:text-stone-200 text-xs font-semibold mb-6">
                 <Sparkles className="w-3.5 h-3.5 text-brass-500" />
                 <span>براند يدوي مصري للكونكريت المعماري</span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stone-900 tracking-tight leading-[1.15] mb-5">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-stone-900 dark:text-white tracking-tight leading-[1.2] mb-5">
                 قطع معمولة بإيد... <br />
-                <span className="text-stone-600 font-medium">تعيش معاك.</span>
+                <span className="text-stone-500 dark:text-stone-400 font-normal">تعيش معاك.</span>
               </h1>
 
-              <p className="text-base sm:text-lg text-stone-600 leading-relaxed max-w-xl mb-8">
+              <p className="text-base sm:text-lg text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl mb-8">
                 تحف وصواني وقواعد أكواب مصنوعة يدوياً من بودرة الكونكريت فائقة النعومة ومواد عزل تحميها من البقع.
               </p>
 
               <div className="flex flex-wrap items-center gap-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-stone-900 text-sand-50 hover:bg-stone-800 font-semibold text-sm transition-all shadow-md active:scale-95"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 hover:bg-stone-800 dark:hover:bg-brass-400 font-bold text-sm transition-all shadow-md active:scale-95"
                 >
                   <span>اكتشف المجموعة</span>
-                  <ArrowLeft className="w-4 h-4 text-brass-400" />
+                  <ArrowLeft className="w-4 h-4 text-brass-400 dark:text-stone-950" />
                 </Link>
 
                 <Link
                   href="/order/track"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white border border-stone-200 text-stone-800 hover:bg-stone-50 font-medium text-sm transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-800 dark:text-stone-200 hover:bg-stone-50 dark:hover:bg-stone-800 font-semibold text-sm transition-all"
                 >
                   <span>تتبع طلب سابق</span>
                 </Link>
@@ -69,19 +69,19 @@ export default async function HomePage() {
 
             {/* Visual Column: Hero Composition */}
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-sand-200">
+              <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-stone-800 bg-sand-200 dark:bg-stone-800">
                 <Image
                   src="https://images.unsplash.com/photo-1594913785162-e678a0c23ee9?auto=format&fit=crop&w=1000&q=80"
                   alt="Gogo Concrete Handmade Tray & Coaster"
                   fill
                   priority
                   sizes="(max-width: 1024px) 100vw, 40vw"
-                  className="object-cover object-center hover:scale-102 transition-transform duration-700"
+                  className="object-cover object-center hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/50 via-transparent to-transparent" />
-                <div className="absolute bottom-5 right-5 left-5 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-white/40 text-stone-900 shadow-lg">
-                  <p className="text-xs font-semibold text-stone-500">خامة استثنائية</p>
-                  <p className="text-sm font-bold text-stone-900">ملمس حجري ناعم خالٍ من المسامات الخشنة</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent" />
+                <div className="absolute bottom-5 right-5 left-5 p-4 rounded-2xl bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-white/40 dark:border-stone-700 text-stone-900 dark:text-white shadow-lg">
+                  <p className="text-xs font-semibold text-stone-500 dark:text-stone-400">خامة استثنائية</p>
+                  <p className="text-sm font-bold text-stone-900 dark:text-white">ملمس حجري ناعم خالٍ من المسامات الخشنة</p>
                 </div>
               </div>
             </div>
@@ -93,40 +93,46 @@ export default async function HomePage() {
       {/* 2. Active Offer Banner (if present) */}
       {activeOffer && (
         <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-          <div className="relative rounded-2xl bg-gradient-to-r from-stone-900 to-stone-800 text-white p-6 sm:p-8 overflow-hidden shadow-lg border border-stone-700">
+          <div className="relative rounded-3xl bg-gradient-to-r from-stone-900 to-stone-800 dark:from-stone-900 dark:to-stone-950 text-white p-6 sm:p-8 overflow-hidden shadow-lg border border-stone-700/60">
             <div className="relative z-10 max-w-2xl">
               {activeOffer.badge_text && (
-                <span className="inline-block px-3 py-1 rounded-full bg-brass-500/20 text-brass-400 border border-brass-500/30 text-xs font-semibold mb-3">
+                <span className="inline-block px-3 py-1 rounded-full bg-brass-500/20 text-brass-400 border border-brass-500/30 text-xs font-bold mb-3">
                   {activeOffer.badge_text}
                 </span>
               )}
-              <h2 className="text-xl sm:text-2xl font-bold mb-2 text-sand-50">
+              <h2 className="text-2xl sm:text-3xl font-black tracking-tight mb-2">
                 {activeOffer.title}
               </h2>
               {activeOffer.description && (
-                <p className="text-stone-300 text-sm leading-relaxed mb-5">
+                <p className="text-stone-300 text-sm leading-relaxed mb-6">
                   {activeOffer.description}
                 </p>
               )}
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-sand-50 text-stone-950 text-xs font-bold hover:bg-white transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brass-500 text-stone-950 font-bold text-xs hover:bg-brass-400 transition-all shadow-sm"
               >
                 <span>تسوق العرض الآن</span>
                 <ArrowLeft className="w-3.5 h-3.5" />
               </Link>
             </div>
-            <div className="absolute -left-10 -bottom-10 w-48 h-48 bg-brass-500/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute left-[-20px] bottom-[-30px] opacity-10 pointer-events-none">
+              <Tag className="w-64 h-64 text-brass-400" />
+            </div>
           </div>
         </section>
       )}
 
-      {/* 3. Categories Chips */}
+      {/* 3. Category Quick Tabs */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-bold text-stone-900">الفئات</h2>
-          <Link href="/products" className="text-xs font-semibold text-stone-600 hover:text-stone-900">
-            عرض كل المنتجات ←
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-2xl font-extrabold text-stone-900 dark:text-white tracking-tight">تصنيفات القطع</h2>
+            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5">اختر ما تبحث عنه لتنسيق ركنك المميز</p>
+          </div>
+          <Link href="/products" className="text-xs font-bold text-stone-700 dark:text-stone-300 hover:text-brass-500 flex items-center gap-1">
+            <span>عرض الكل</span>
+            <ArrowLeft className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -135,7 +141,7 @@ export default async function HomePage() {
             <Link
               key={cat.key}
               href={cat.href}
-              className="whitespace-nowrap px-4 py-2.5 rounded-xl text-xs font-medium bg-white hover:bg-stone-100 text-stone-800 border border-stone-200 shadow-sm transition-colors active:scale-95"
+              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-800 dark:text-stone-200 hover:border-brass-500 hover:text-brass-600 dark:hover:text-brass-400 text-xs font-bold transition-all shadow-sm active:scale-95"
             >
               {cat.label}
             </Link>
@@ -143,106 +149,86 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* 4. Featured Products */}
+      {/* 4. Featured Products Grid */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="flex items-end justify-between mb-8">
+        <div className="flex items-center justify-between mb-8">
           <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-1">
-              مختارات من المتجر
-            </h2>
-            <p className="text-sm text-stone-500">
-              أحدث القطع المصبوبة يدوياً وجاهزة للطلب
-            </p>
+            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">أحدث القطع المصبوبة</h2>
+            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">قطع جاهزة للشحن أو للتخصيص بالألوان التي تختارها</p>
           </div>
           <Link
             href="/products"
-            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-stone-800 hover:text-stone-950 pb-1"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-stone-100 dark:bg-stone-800 text-stone-800 dark:text-stone-200 hover:bg-stone-200 dark:hover:bg-stone-700 text-xs font-bold transition-colors"
           >
-            <span>كل المجموعة ({products.length})</span>
+            <span>عرض كافة المنتجات</span>
             <ArrowLeft className="w-3.5 h-3.5" />
           </Link>
         </div>
 
         {featuredProducts.length === 0 ? (
-          <div className="text-center py-12 bg-white rounded-2xl border border-stone-200">
-            <p className="text-stone-500 text-sm">لا توجد منتجات متاحة حالياً.</p>
+          <div className="text-center py-16 bg-white dark:bg-stone-900 rounded-3xl border border-stone-200 dark:border-stone-800 text-stone-400">
+            <p className="text-sm">لا توجد منتجات منشورة حالياً، تابعنا قريباً!</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6">
-            {featuredProducts.map((prod) => (
-              <ProductCard key={prod.id} product={prod} />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         )}
-      </section>
 
-      {/* 5. Why Gogo - 3 Points Only */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="bg-sand-100/70 border border-sand-200 rounded-3xl p-8 sm:p-12">
-          <div className="text-center max-w-xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-2">
-              ليه تختار قطع Gogo؟
-            </h2>
-            <p className="text-sm text-stone-600">
-              سر الصنعة وخامات العزل التي تجعل كل قطعة تحفة معمرة
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center sm:text-right">
-            
-            {/* Point 1 */}
-            <div className="flex flex-col items-center sm:items-start p-5 rounded-2xl bg-white/70 border border-white">
-              <div className="w-12 h-12 rounded-xl bg-stone-900 text-brass-400 flex items-center justify-center mb-4 shadow-sm">
-                <Feather className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-stone-900 text-base mb-1.5">صناعة يدوية</h3>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                تُخلط وتُصب في قوالب سيليكون خاصة بعناية تامة بدون استخدام ركام أو حصى خشن.
-              </p>
-            </div>
-
-            {/* Point 2 */}
-            <div className="flex flex-col items-center sm:items-start p-5 rounded-2xl bg-white/70 border border-white">
-              <div className="w-12 h-12 rounded-xl bg-stone-900 text-brass-400 flex items-center justify-center mb-4 shadow-sm">
-                <Layers className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-stone-900 text-base mb-1.5">خامات مختارة</h3>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                بودرة ناعمة فائقة الجودة وبوليمرات رابطة مع طبقة حماية عازلة للماء والبقع والحرارة.
-              </p>
-            </div>
-
-            {/* Point 3 */}
-            <div className="flex flex-col items-center sm:items-start p-5 rounded-2xl bg-white/70 border border-white">
-              <div className="w-12 h-12 rounded-xl bg-stone-900 text-brass-400 flex items-center justify-center mb-4 shadow-sm">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <h3 className="font-bold text-stone-900 text-base mb-1.5">كل قطعة مختلفة</h3>
-              <p className="text-xs sm:text-sm text-stone-600 leading-relaxed">
-                التأثير المارمري والتموجات الحجرية فريدة تماماً في كل صبة، ولا تتكرر قطعة مثل الأخرى.
-              </p>
-            </div>
-
-          </div>
+        <div className="mt-8 text-center sm:hidden">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-xl bg-stone-900 dark:bg-brass-500 text-white dark:text-stone-950 font-bold text-xs shadow-sm"
+          >
+            <span>عرض كل المنتجات</span>
+            <ArrowLeft className="w-3.5 h-3.5" />
+          </Link>
         </div>
       </section>
 
-      {/* 6. CTA Section */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 w-full text-center">
-        <div className="p-8 sm:p-12 rounded-3xl bg-stone-900 text-sand-50 shadow-xl border border-stone-800 flex flex-col items-center">
-          <h2 className="text-2xl sm:text-4xl font-extrabold mb-3 text-white">
-            جاهز تختار قطعتك؟
-          </h2>
-          <p className="text-sm sm:text-base text-stone-300 max-w-md mb-8 leading-relaxed">
-            اختر القطع التي تناسب ذوق مساحتك، وثبّت طلبك بعربون 50% لنبدأ في صبها خصيصاً لك.
-          </p>
-          <Link
-            href="/products"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-sand-50 text-stone-950 font-bold text-sm hover:bg-white transition-all shadow-md active:scale-95"
-          >
-            <span>تسوق الآن</span>
-            <ArrowLeft className="w-4 h-4" />
-          </Link>
+      {/* 5. Craftsmanship & Assurance Value Props */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+        <div className="p-8 sm:p-12 rounded-3xl bg-sand-100/90 dark:bg-stone-900 border border-sand-200/80 dark:border-stone-800">
+          <div className="text-center max-w-xl mx-auto mb-10">
+            <h2 className="text-2xl font-black text-stone-900 dark:text-white mb-2">ليه تختار Gogo Concrete؟</h2>
+            <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400">نحن لا نبيع مجرد قطع خرسانية، بل نهتم بأدق تفاصيل الصب والمعالجة لتناسب ديكور منزلك</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div className="p-6 rounded-2xl bg-white dark:bg-stone-800/80 border border-stone-200/80 dark:border-stone-700 shadow-sm flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-900 dark:text-brass-400 mb-4">
+                <Feather className="w-6 h-6 text-stone-800 dark:text-brass-400" />
+              </div>
+              <h3 className="font-bold text-stone-900 dark:text-white text-base mb-1.5">ملمس ناعم وعزل مائي</h3>
+              <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                معالجة سطحية بطبقة حماية ضد الرطوبة والبقع تجعل تنظيفها بقطعة قماش ناعمة أمراً بسيطاً.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white dark:bg-stone-800/80 border border-stone-200/80 dark:border-stone-700 shadow-sm flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-900 dark:text-brass-400 mb-4">
+                <Layers className="w-6 h-6 text-stone-800 dark:text-brass-400" />
+              </div>
+              <h3 className="font-bold text-stone-900 dark:text-white text-base mb-1.5">قواعد فلين للحماية</h3>
+              <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                كل صينية وكوستر مزود بقواعد حماية ناعمة من الأسفل لضمان عدم خدش أسطح الزجاج أو الخشب.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white dark:bg-stone-800/80 border border-stone-200/80 dark:border-stone-700 shadow-sm flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-900 dark:text-brass-400 mb-4">
+                <ShieldCheck className="w-6 h-6 text-stone-800 dark:text-brass-400" />
+              </div>
+              <h3 className="font-bold text-stone-900 dark:text-white text-base mb-1.5">نظام عربون عادل وآمن</h3>
+              <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                تدفع فقط 50% كعربون لتأكيد الصب وتجهيز الألوان، والباقي عند استلام القطع وشحنها.
+              </p>
+            </div>
+
+          </div>
         </div>
       </section>
 
