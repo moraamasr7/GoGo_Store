@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mt-4 p-4 rounded-2xl bg-sand-100/80 dark:bg-stone-900 border border-sand-200 dark:border-stone-800 text-xs text-stone-700 dark:text-stone-300 flex items-start gap-2.5">
             <Sparkles className="w-4 h-4 text-brass-500 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong>ملاحظة الصناعة اليدوية:</strong> كل قطعة مصنوعة يدوياً، لذلك قد توجد اختلافات بسيطة وجميلة في التموجات والمسام الحجرية بين قطعة وأخرى.
+              <strong>شغل يدوي معمول بحب:</strong> كل قطعة بنفذها يدويًا من البيت بتشطيب ناعم يشبه السيراميك في نعومته وأناقته لتضيف لمسة راقية لبيتك 🤍
             </p>
           </div>
         </div>
@@ -96,16 +96,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
               {formatPrice(product.price)}
             </span>
             <span className="text-xs text-stone-500 dark:text-stone-400">
-              (عربون 50% مطلوب لتأكيد الصب)
+              (عربون 50% لتأكيد تنفيذ وحجز القطعة)
             </span>
           </div>
 
-          {/* Description */}
-          {product.description_ar && (
-            <div className="mb-6 text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-              <p>{product.description_ar}</p>
-            </div>
-          )}
+          {/* Description & Real Supporting Copy */}
+          <div className="mb-6 text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed space-y-2">
+            {product.description_ar && <p>{product.description_ar}</p>}
+            <p className="text-stone-500 dark:text-stone-400 text-xs">
+              قطعة ديكور مصنوعة يدويًا بتشطيب ناعم تشبه السيراميك في نعومتها وأناقتها وألوان هادية راقية تضيف لمسة ذوق عالي لأي مكان. تصميم مودرن يناسب البيوت البسيطة والديكور العصري، عملية وجمالية في نفس الوقت ✨
+            </p>
+          </div>
 
           {/* Technical Specifications */}
           <div className="grid grid-cols-2 gap-3 mb-6 p-4 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 text-xs">
@@ -122,12 +123,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               </div>
             )}
             <div>
-              <span className="text-stone-400 dark:text-stone-500 block mb-0.5">الخامة</span>
-              <span className="font-semibold text-stone-800 dark:text-stone-200">كونكريت ديكوري فائق النعومة</span>
+              <span className="text-stone-400 dark:text-stone-500 block mb-0.5">الخامة والصنع</span>
+              <span className="font-semibold text-stone-800 dark:text-stone-200">كونكريت Handmade من البيت</span>
             </div>
             <div>
-              <span className="text-stone-400 dark:text-stone-500 block mb-0.5">العزل</span>
-              <span className="font-semibold text-stone-800 dark:text-stone-200">طبقة عازلة ضد الرطوبة</span>
+              <span className="text-stone-400 dark:text-stone-500 block mb-0.5">التشطيب والمظهر</span>
+              <span className="font-semibold text-stone-800 dark:text-stone-200">ناعم وهادئ يشبه السيراميك</span>
             </div>
           </div>
 

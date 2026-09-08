@@ -37,9 +37,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         <div>
           <div className="flex items-center justify-between mb-2">
             <label className="text-xs font-bold text-stone-700 dark:text-stone-300">
-              اللون / التموج الرخامي المفضل:
+              اللون / التموج المفضل:
             </label>
-            <span className="text-[11px] text-stone-400 font-medium">يُصب مخصصاً لكِ</span>
+            <span className="text-[11px] text-stone-400 font-medium">ألوان هادية ومودرن</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {colors.map((color) => {
@@ -69,9 +69,9 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         {isOutOfStock ? (
           <span className="font-bold text-rose-600 dark:text-rose-400">نفذت الكمية حالياً</span>
         ) : (
-          <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1">
+          <span className="text-emerald-700 dark:text-emerald-400 font-bold flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>جاهزة للصب الفوري ({product.stock} قطع متوفرة بالمخزون)</span>
+            <span>متاحة للتنفيذ بأمر الله 🌸 ({product.stock} قطع متوفرة)</span>
           </span>
         )}
       </div>
@@ -115,7 +115,7 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
             className="flex-1"
             leftIcon={justAdded ? <Check className="w-4 h-4 text-emerald-300" /> : <ShoppingBag className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
           >
-            {justAdded ? 'تمت الإضافة للحقيبة! ✨' : 'اقتني القطعة الآن'}
+            {justAdded ? 'تمت الإضافة للسلة! ✨' : 'أضيفي للسلة'}
           </Button>
 
         </div>
@@ -126,11 +126,24 @@ export default function ProductDetailClient({ product }: ProductDetailClientProp
         <div className="pt-2">
           <Link href="/cart" className="block">
             <Button variant="secondary" size="md" className="w-full" rightIcon={<ArrowLeft className="w-4 h-4" />}>
-              الذهاب إلى الحقيبة للمعاينة وسداد العربون
+              الذهاب إلى السلة للمعاينة وتأكيد الطلب
             </Button>
           </Link>
         </div>
       )}
+
+      {/* Set Building & Customization Microcopy */}
+      <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-900 border border-sand-200/80 dark:border-stone-800 text-xs text-stone-600 dark:text-stone-300 space-y-2">
+        <p className="font-bold text-stone-900 dark:text-white">
+          اختاري، ركّبي، واعملي ستايلك بنفسك ✨
+        </p>
+        <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-relaxed">
+          تقدري تقتني قطعة واحدة أو تكوّني الطقم اللي يعجبك حسب ذوقك واحتياجك وتنسقيه مع بيتك.
+        </p>
+        <p className="text-[11px] text-brass-700 dark:text-brass-400 font-medium pt-1.5 border-t border-sand-200/60 dark:border-stone-800">
+          ومتاح تنفيذ أي ألوان والأشكال اللي معروضة حالياً متاحة بأمر الله. لو حابة استفسار ابعتي لنا خاص 🙋‍♀️💜
+        </p>
+      </div>
 
     </div>
   );

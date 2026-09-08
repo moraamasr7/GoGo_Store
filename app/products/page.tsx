@@ -28,13 +28,28 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12">
       
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl sm:text-4xl font-black text-stone-900 dark:text-white mb-2 tracking-tight">
-          مجموعة قطع الكونكريت
+      <div className="mb-6 space-y-2">
+        <span className="text-xs font-bold text-brass-600 dark:text-brass-400">
+          الصور موجودة وأسعار بسيطة ✨
+        </span>
+        <h1 className="text-3xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight">
+          القطع والأشكال المتاحة للتنفيذ 🌸
         </h1>
-        <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400">
-          تصفح جميع القطع المصنوعة يدوياً المتاحة للطلب الفوري أو الصب المخصص
+        <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 max-w-2xl leading-relaxed">
+          شغل كونكريت / ديكوري يدوي من البيت بأشكال كتير وتصميمات مودرن وبسيطة. تقدري تختاري قطعة واحدة أو تكوّني الطقم اللي يعجبك وتنسقيه بنفسك 🤍
         </p>
+      </div>
+
+      {/* Build your set banner */}
+      <div className="mb-6 p-4 rounded-2xl bg-sand-100/80 dark:bg-stone-900 border border-sand-200 dark:border-stone-800 text-xs text-stone-700 dark:text-stone-300 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <span className="px-2.5 py-1 rounded-lg bg-sand-200 dark:bg-stone-800 font-bold text-stone-900 dark:text-white text-[11px] shrink-0">
+            اختاري وركّبي ✨
+          </span>
+          <span className="leading-relaxed">
+            الأشكال والألوان المعروضة حالياً متاحة للتنفيذ بأمر الله، ومتاح طلب أي لون أو شكل معين على الخاص 🙋‍♀️💜
+          </span>
+        </div>
       </div>
 
       {/* Categories Filter Tabs */}

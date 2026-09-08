@@ -141,7 +141,7 @@ export default function CheckoutPage() {
           إتمام الطلب وسداد العربون
         </h1>
         <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
-          خطوة واحدة تفصلك عن صب وتجهيز قطعتك المميزة
+          خطوة بسيطة لتأكيد حجز وتنفيذ القطع يدويًا بكل حب 🤍
         </p>
       </div>
 
@@ -220,7 +220,7 @@ export default function CheckoutPage() {
                 <textarea
                   name="customer_notes"
                   rows={2}
-                  placeholder="مثال: يرجى جعل الرخام رمادي فاتح مائل للأبيض مع خطوط ذهبية خفيفة..."
+                  placeholder="مثال: لو حابة تنسيق لون معين أو كتابة ملاحظة خاصة لتنفيذ طلبك..."
                   className="w-full px-3.5 py-2.5 rounded-xl border border-stone-200 dark:border-stone-700 text-xs focus:outline-none focus:ring-2 focus:ring-stone-900 dark:focus:ring-brass-400 bg-stone-50/50 dark:bg-stone-800 dark:text-white"
                 />
               </div>

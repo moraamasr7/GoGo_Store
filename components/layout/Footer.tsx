@@ -22,11 +22,11 @@ export default async function Footer() {
               <h3 className="font-extrabold text-white text-lg tracking-wide">GOGO CONCRETE</h3>
             </div>
             <p className="text-stone-400 text-xs sm:text-sm leading-relaxed mb-4">
-              متجر متخصص في صناعة الديكورات والقطع الحجرية اليدوية المعاصرة بخام الكونكريت الديكوري الناعم. قطع تُصب وتُعالج يدوياً بكل دقة لتضفي دفئاً وهدوءاً على منزلك ومكتبك.
+              شغل كونكريت وديكور يدوي من البيت بأشكال كتير، تصميمات مودرن وبسيطة وتشطيب ناعم يشبه السيراميك، معمول بحب لكل بيت ومساحة.
             </p>
             <div className="flex items-center gap-2 text-xs text-brass-400 font-bold">
               <Sparkles className="w-4 h-4" />
-              <span>صناعة يدوية أصيلة 100% في مصر</span>
+              <span>كونكريت | هاند ميد | تحف وديكورات مصنوعة بحب ✨</span>
             </div>
           </div>
 
@@ -36,7 +36,7 @@ export default async function Footer() {
             <ul className="space-y-2.5 text-xs sm:text-sm text-stone-400">
               <li>
                 <Link href="/products" className="hover:text-sand-100 dark:hover:text-brass-300 transition-colors">
-                  تصفح كافة المنتجات
+                  تصفح كافة المعروضات
                 </Link>
               </li>
               <li>
@@ -52,9 +52,9 @@ export default async function Footer() {
             </ul>
 
             <div className="mt-6 p-4 rounded-2xl bg-stone-800/80 dark:bg-stone-900 border border-stone-700/60 text-xs text-stone-300 space-y-1">
-              <p className="font-bold text-sand-200 dark:text-brass-400">🏺 طبيعة المنتج اليدوي:</p>
+              <p className="font-bold text-sand-200 dark:text-brass-400">🏺 طبيعة الشغل اليدوي:</p>
               <p className="leading-relaxed text-stone-400 text-[11px]">
-                كل قطعة تُصب يدوياً بقوالب مخصصة، لذلك قد تظهر فروق طفيفة طبيعية في تداخل الألوان أو المسام الحجرية الدقيقة، وهي سر تفرد كل قطعة.
+                الأشكال والألوان المعروضة حالياً متاحة للتنفيذ بأمر الله، ومتاح تنفيذ أي ألوان أو أشكال خاصة عبر مراسلتنا على الخاص 🌸
               </p>
             </div>
           </div>

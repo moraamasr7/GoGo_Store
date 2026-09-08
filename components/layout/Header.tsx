@@ -23,9 +23,9 @@ export default function Header() {
           <div>
             <div className="font-bold text-lg tracking-wide text-stone-900 dark:text-white flex items-center gap-1.5">
               <span>GOGO CONCRETE</span>
-              <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-sand-200 font-medium">يدوي</span>
+              <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-sand-200 font-medium">Handmade</span>
             </div>
-            <p className="text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">قطع كونكريت ديكورية فريدة</p>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">تحف وديكورات معمولـة بحب 🤍</p>
           </div>
         </Link>
 

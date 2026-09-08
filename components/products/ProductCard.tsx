@@ -23,10 +23,10 @@ export default function ProductCard({ product, featuredBadge }: ProductCardProps
   // Dynamic aesthetic badges based on stock/order
   const badge = featuredBadge || (
     product.stock <= 3 && product.stock > 0
-      ? 'قطعة محدودة'
+      ? 'متبقي قطع قليلة'
       : product.stock > 10
       ? 'الأكثر طلباً'
-      : 'صناعة يدوية'
+      : 'شغل Handmade'
   );
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -117,7 +117,7 @@ export default function ProductCard({ product, featuredBadge }: ProductCardProps
           </Link>
           
           <p className="text-[11px] text-stone-500 dark:text-stone-400 mt-1 line-clamp-1">
-            {product.description_ar || 'قطعة مصبوبة يدويًا من الكونكريت الناعم بعناية.'}
+            {product.description_ar || 'قطعة ديكور هاند ميد بتشطيب ناعم وألوان هادية تليق على بيتك.'}
           </p>
         </div>
 
@@ -148,12 +148,12 @@ export default function ProductCard({ product, featuredBadge }: ProductCardProps
               {isInCart ? (
                 <>
                   <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  <span className="hidden sm:inline">أضف مجدداً</span>
+                  <span className="hidden sm:inline">في السلة 🤍</span>
                 </>
               ) : (
                 <>
                   <Plus className="w-4 h-4 text-brass-400 dark:text-stone-950" />
-                  <span>اقتني القطعة</span>
+                  <span>اختاري القطعة</span>
                 </>
               )}
             </button>

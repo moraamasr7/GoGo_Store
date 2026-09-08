@@ -41,13 +41,13 @@ export default function CartPage() {
         <div className="w-20 h-20 rounded-3xl bg-sand-200/80 dark:bg-stone-800 text-stone-700 dark:text-sand-200 flex items-center justify-center mx-auto mb-6 shadow-sm border border-sand-300/60 dark:border-stone-700">
           <ShoppingBag className="w-10 h-10 text-stone-600 dark:text-brass-400" />
         </div>
-        <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white mb-2">حقيبة مشترياتك فارغة</h1>
+        <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white mb-2">سلة مشترياتك فاضية 🌸</h1>
         <p className="text-sm text-stone-500 dark:text-stone-400 mb-8 leading-relaxed max-w-sm mx-auto">
-          لم تقومي بإضافة أي قطع فنية بعد. استكشفي معرضنا الحجري واختاري ما يبهج مساحتك.
+          لسة ما اخترتيش أي قطعة ديكور. خدي لفة في المعرض واختاري قطعة أو كوّني طقم على ذوقك ✨
         </p>
         <Link href="/products" className="inline-block">
           <Button variant="primary" size="lg" rightIcon={<ArrowLeft className="w-4 h-4" />}>
-            تصفح المعرض واقتني الآن
+            تصفحي المعرض واختاري ستايلك
           </Button>
         </Link>
       </div>
@@ -60,14 +60,14 @@ export default function CartPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-stone-200/80 dark:border-stone-800/80">
         <div>
-          <h1 className="text-3xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight">حقيبة مشترياتك</h1>
+          <h1 className="text-3xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight">سلة مشترياتك 🤍</h1>
           <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
-            مراجعة القطع المختارة وعربون الصب الحجري قبل الانتقال لإتمام الطلب
+            مراجعة القطع وتنسيق طقمك وعربون الـ 50% لتأكيد التنفيذ
           </p>
         </div>
         <Link href="/products">
           <Button variant="ghost" size="sm" rightIcon={<ArrowRight className="w-3.5 h-3.5" />}>
-            متابعة استكشاف المعرض
+            متابعة اختيار القطع
           </Button>
         </Link>
       </div>
@@ -80,7 +80,7 @@ export default function CartPage() {
               <Gift className="w-4 h-4" />
             </div>
             <span className="font-extrabold text-stone-900 dark:text-white text-sm">
-              {isGiftQualified ? 'مبروك! هديتك علينا 🤍 (مؤهلة لـ 3 قطع مجانية)' : 'عرض الهدايا الفاخرة'}
+              {isGiftQualified ? 'مبروك! هديتك علينا 🤍 (مؤهلة لـ 3 قطع مجانية)' : 'عرض خاص: هديتك علينا 🤍'}
             </span>
           </div>
 
@@ -99,8 +99,8 @@ export default function CartPage() {
 
         <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-normal">
           {isGiftQualified
-            ? 'طلبك تجاوز 2,500 ج.م! يمكنك اختيار 3 قطع هدية وذكرها في ملاحظات الطلب.'
-            : 'اطلبي بـ 2,500 ج.م أو أكثر واحصلي على 3 قطع فاخرة هدية من مجموعة التحف.'}
+            ? 'طلبك تجاوز 2,500 ج.م! هنضيف 3 قطع إضافية هدية لطلبك ✨'
+            : 'اطلبي بـ 2,500 ج.م أو أكثر واحصلي على 3 قطع هدية تضاف لطلبك.'}
         </p>
       </div>
 
@@ -220,7 +220,7 @@ export default function CartPage() {
                 <span className="text-sm font-mono text-brass-600 dark:text-brass-400">{formatPrice(depositAmount)}</span>
               </div>
               <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-normal">
-                يتم تحويل العربون لتثبيت صب الألوان وتجهيز طلبك، ورفع الإيصال في الخطوة التالية.
+                يتم تحويل عربون 50% لتأكيد تنفيذ وحجز طلبك، والمتبقي يُسدد عند استلام وتفقد القطع مع مندوب الشحن.
               </p>
             </div>
 
