@@ -22,7 +22,8 @@ import { CourseCard } from '@/components/courses/CourseCard';
 import { sampleCourses } from '@/lib/coursesData';
 import { Button } from '@/components/ui/Button';
 
-export const revalidate = 60;
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export default async function HomePage() {
   const [products, offers, settings] = await Promise.all([

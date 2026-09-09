@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -55,16 +58,31 @@ export default async function RootLayout({
 
           {settings.maintenance_mode ? (
             <div className="min-h-screen flex flex-col items-center justify-center p-6 text-center bg-sand-100 dark:bg-stone-900">
-              <div className="w-16 h-16 rounded-2xl bg-stone-900 dark:bg-stone-800 text-sand-50 flex items-center justify-center mb-6 shadow-md">
+              <div className="w-16 h-16 rounded-2xl bg-stone-900 dark:bg-stone-800 text-sand-50 flex items-center justify-center mb-6 shadow-md border border-sand-300 dark:border-stone-700">
                 <Hammer className="w-8 h-8 text-brass-400 animate-pulse" />
               </div>
-              <h1 className="text-3xl font-bold text-stone-900 dark:text-white mb-3">المتجر في تحديث بسيط...</h1>
-              <p className="text-stone-600 dark:text-stone-400 max-w-md text-base leading-relaxed mb-6">
-                نقوم بإضافة قطع جديدة وتحديث المتجر، هنرجع متاحين للطلب قريب جداً ❤️
+              <h1 className="text-3xl font-black text-stone-900 dark:text-white mb-3">المتجر في تحديث بسيط...</h1>
+              <p className="text-stone-600 dark:text-stone-400 max-w-md text-sm sm:text-base leading-relaxed mb-6">
+                نقوم بإضافة معروضات وتحديثات جديدة، وسنعود متاحين للطلب بأعلى جودة قريباً جداً ✨
               </p>
-              <p className="text-xs text-stone-500 dark:text-stone-400">
-                للطلبات العاجلة يمكنك مراسلتنا مباشرة على واتساب
-              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="/"
+                  className="px-5 py-2.5 rounded-xl bg-stone-900 text-sand-50 dark:bg-brass-500 dark:text-stone-950 text-xs font-bold shadow hover:opacity-90 transition-opacity"
+                >
+                  إعادة التحقق من فتح المتجر 🔄
+                </a>
+                {settings.whatsapp_number && (
+                  <a
+                    href={`https://wa.me/${settings.whatsapp_number.replace(/[^0-9]/g, '')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow transition-colors"
+                  >
+                    مراسلتنا عبر واتساب
+                  </a>
+                )}
+              </div>
             </div>
           ) : (
             <CartProvider>
