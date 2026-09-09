@@ -74,6 +74,11 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
       if (item.key === 'maintenance_mode') result.maintenance_mode = item.value === 'true';
       if (item.key === 'header_logo_url') result.header_logo_url = item.value || undefined;
       if (item.key === 'hero_banner_url') result.hero_banner_url = item.value || undefined;
+      if (item.key === 'promo_banner_active') result.promo_banner_active = item.value !== 'false';
+      if (item.key === 'promo_banner_title') result.promo_banner_title = item.value || undefined;
+      if (item.key === 'promo_banner_badge') result.promo_banner_badge = item.value || undefined;
+      if (item.key === 'promo_banner_image_url') result.promo_banner_image_url = item.value || undefined;
+      if (item.key === 'promo_banner_link') result.promo_banner_link = item.value || undefined;
     }
     return result;
   } catch {

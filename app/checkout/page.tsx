@@ -241,44 +241,64 @@ export default function CheckoutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
               
               {/* Vodafone Cash Box */}
-              <div className="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/80 border border-stone-200/90 dark:border-stone-700 flex flex-col justify-between">
+              <div className="p-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border-2 border-emerald-500/40 dark:border-emerald-500/50 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-bold text-stone-900 dark:text-white">فودافون كاش</span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-100 dark:bg-rose-950/60 text-rose-700 dark:text-rose-300 font-semibold">محفظة</span>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-xs font-black text-stone-900 dark:text-white">محفظة فودافون كاش</span>
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold border border-emerald-300 dark:border-emerald-700">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                      <span>موثوق ويعمل ✔</span>
+                    </span>
                   </div>
-                  <span className="font-mono text-sm font-bold text-stone-950 dark:text-white tracking-wider block mt-1" dir="ltr">
-                    {settings?.vodafone_cash || '010XXXXXXXX'}
-                  </span>
+                  <div className="bg-white dark:bg-stone-900/80 p-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800/60 mt-2">
+                    <span className="text-[10px] font-bold text-stone-400 block mb-0.5">رقم المحفظة المعتمد:</span>
+                    <span className="font-mono text-base font-black text-emerald-700 dark:text-emerald-400 tracking-wider block" dir="ltr">
+                      {settings?.vodafone_cash || '010XXXXXXXX'}
+                    </span>
+                  </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings?.vodafone_cash || '', 'vodafone')}
-                  className="mt-3 w-full py-1.5 px-3 rounded-lg bg-white dark:bg-stone-700 border border-stone-200 dark:border-stone-600 text-stone-700 dark:text-stone-200 text-xs font-bold hover:bg-stone-100 dark:hover:bg-stone-600 flex items-center justify-center gap-1.5 transition-colors"
+                  className="mt-3 w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs active:scale-95"
                 >
-                  {copiedKey === 'vodafone' ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedKey === 'vodafone' ? 'تم النسخ!' : 'نسخ الرقم'}</span>
+                  {copiedKey === 'vodafone' ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                  <span>{copiedKey === 'vodafone' ? 'تم نسخ الرقم بنجاح!' : 'نسخ رقم المحفظة'}</span>
                 </button>
               </div>
 
               {/* InstaPay Box */}
-              <div className="p-4 rounded-2xl bg-stone-50 dark:bg-stone-800/80 border border-stone-200/90 dark:border-stone-700 flex flex-col justify-between">
+              <div className="p-4 rounded-2xl bg-emerald-50/50 dark:bg-emerald-950/20 border-2 border-emerald-500/40 dark:border-emerald-500/50 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-emerald-500" />
                 <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-bold text-stone-900 dark:text-white">إنستاباي (InstaPay)</span>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 font-semibold">IPA</span>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-xs font-black text-stone-900 dark:text-white">إنستاباي (InstaPay)</span>
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold border border-emerald-300 dark:border-emerald-700">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                      <span>تحويل فوري موثوق ✔</span>
+                    </span>
                   </div>
-                  <span className="font-mono text-xs font-bold text-stone-950 dark:text-white block mt-1" dir="ltr">
-                    {settings?.instapay || 'gogo@instapay'}
-                  </span>
+                  <div className="bg-white dark:bg-stone-900/80 p-2.5 rounded-xl border border-emerald-200 dark:border-emerald-800/60 mt-2">
+                    <span className="text-[10px] font-bold text-stone-400 block mb-0.5">معرف التحويل الرسمي (IPA):</span>
+                    <span className="font-mono text-sm font-black text-emerald-700 dark:text-emerald-400 block truncate" dir="ltr">
+                      {settings?.instapay || 'gogo@instapay'}
+                    </span>
+                  </div>
                 </div>
                 <button
                   type="button"
                   onClick={() => copyToClipboard(settings?.instapay || '', 'instapay')}
-                  className="mt-3 w-full py-1.5 px-3 rounded-lg bg-white dark:bg-stone-700 border border-stone-200 dark:border-stone-600 text-stone-700 dark:text-stone-200 text-xs font-bold hover:bg-stone-100 dark:hover:bg-stone-600 flex items-center justify-center gap-1.5 transition-colors"
+                  className="mt-3 w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-all shadow-xs active:scale-95"
                 >
-                  {copiedKey === 'instapay' ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
-                  <span>{copiedKey === 'instapay' ? 'تم النسخ!' : 'نسخ المعرف'}</span>
+                  {copiedKey === 'instapay' ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                  <span>{copiedKey === 'instapay' ? 'تم نسخ المعرف بنجاح!' : 'نسخ عنوان إنستاباي'}</span>
                 </button>
               </div>
 

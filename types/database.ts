@@ -92,4 +92,9 @@ export interface StorePublicSettings {
   maintenance_mode: boolean;
   header_logo_url?: string;
   hero_banner_url?: string;
+  promo_banner_active?: boolean;
+  promo_banner_title?: string;
+  promo_banner_badge?: string;
+  promo_banner_image_url?: string;
+  promo_banner_link?: string;
 }

@@ -272,6 +272,40 @@ export default async function HomePage() {
       </section>
 
       {/* ========================================================================= */}
+      {/* 3.5 PROMOTIONAL BANNER (من الإعدادات والعروض بمقاس متناسق وجذاب)             */}
+      {/* ========================================================================= */}
+      {(settings.promo_banner_active !== false && (settings.promo_banner_image_url || activeOffer)) && (
+        <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+          <Link
+            href={settings.promo_banner_link || '/products'}
+            className="group relative block w-full aspect-[21/9] sm:aspect-[24/8] md:aspect-[28/8] rounded-3xl overflow-hidden border border-stone-200/90 dark:border-stone-800 shadow-lg shadow-stone-950/5 dark:shadow-stone-950/60 transition-all duration-500 hover:shadow-2xl hover:border-brass-500/50"
+          >
+            <Image
+              src={settings.promo_banner_image_url || activeOffer?.image_url || "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1400&q=80"}
+              alt={settings.promo_banner_title || activeOffer?.title || "عرض خاص"}
+              fill
+              sizes="(max-width: 1024px) 100vw, 1200px"
+              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            />
+            {/* Dark & Brass Atmosphere Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-stone-950/55 to-transparent flex flex-col justify-center px-6 sm:px-12 md:px-16 text-white space-y-2.5">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-500 text-stone-950 font-black text-xs self-start shadow-md">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{settings.promo_banner_badge || activeOffer?.badge_text || 'عرض خاص 🔥'}</span>
+              </span>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight max-w-xl text-sand-50 group-hover:text-brass-300 transition-colors">
+                {settings.promo_banner_title || activeOffer?.title || 'تشكيلة مميزة من الديكورات بأعلي جودة'}
+              </h3>
+              <div className="flex items-center gap-2 text-xs font-bold text-sand-200 pt-1">
+                <span>تصفحي العرض الآن</span>
+                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-brass-400" />
+              </div>
+            </div>
+          </Link>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
       {/* 4. PRODUCT SHOWCASE: الأشكال والألوان المعروضة حالياً متاحة للتنفيذ       */}
       {/* ========================================================================= */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full space-y-6">

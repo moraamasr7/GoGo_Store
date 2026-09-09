@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, Heart, MessageCircle } from 'lucide-react';
+import { Sparkles, Heart, MessageCircle, CheckCircle2 } from 'lucide-react';
 import { getPublicSettings } from '@/lib/supabase';
 import { generateWhatsAppInquiryUrl } from '@/lib/whatsapp';
 
@@ -90,20 +90,27 @@ export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-bold text-xs sm:text-sm transition-all shadow-sm active:scale-95"
+              className="inline-flex items-center justify-center gap-2 w-full py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm transition-all shadow-md active:scale-95 border border-emerald-400/40"
             >
               <MessageCircle className="w-4 h-4" />
-              <span>تواصل معنا على واتساب</span>
+              <span>تواصل معنا على واتساب (متاح الآن)</span>
             </a>
 
-            <div className="mt-5 text-xs text-stone-400 space-y-2 bg-stone-800/60 dark:bg-stone-900 p-3.5 rounded-xl border border-stone-700/50">
-              <div className="flex justify-between items-center">
-                <span>فودافون كاش:</span>
-                <span className="font-mono font-bold text-sand-200 dark:text-white" dir="ltr">{settings.vodafone_cash}</span>
+            <div className="mt-5 text-xs text-stone-300 space-y-2.5 bg-stone-900/90 p-4 rounded-2xl border border-emerald-500/30 shadow-xs">
+              <div className="flex items-center justify-between pb-2 border-b border-stone-800">
+                <span className="text-[11px] font-bold text-stone-400">طرق سداد العربون المعتمدة:</span>
+                <span className="inline-flex items-center gap-1 text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-700/60 font-bold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>نشط وموثوق</span>
+                </span>
               </div>
-              <div className="flex justify-between items-center">
-                <span>إنستاباي:</span>
-                <span className="font-mono font-bold text-sand-200 dark:text-white" dir="ltr">{settings.instapay}</span>
+              <div className="flex justify-between items-center bg-stone-950/60 p-2 rounded-xl border border-stone-800">
+                <span className="text-stone-400 font-semibold">فودافون كاش:</span>
+                <span className="font-mono font-black text-emerald-400 text-sm tracking-wider" dir="ltr">{settings.vodafone_cash}</span>
+              </div>
+              <div className="flex justify-between items-center bg-stone-950/60 p-2 rounded-xl border border-stone-800">
+                <span className="text-stone-400 font-semibold">إنستاباي:</span>
+                <span className="font-mono font-black text-emerald-400 text-xs tracking-wide" dir="ltr">{settings.instapay}</span>
               </div>
             </div>
           </div>
