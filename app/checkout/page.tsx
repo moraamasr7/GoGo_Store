@@ -141,7 +141,7 @@ export default function CheckoutPage() {
           إتمام الطلب وسداد العربون
         </h1>
         <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
-          خطوة بسيطة لتأكيد حجز وتنفيذ القطع يدويًا بكل حب 🤍
+          خطوة بسيطة لتأكيد حجز وتنفيذ القطع يدويًا بتركيز ودقة وبأعلي جودة ✨
         </p>
       </div>
 

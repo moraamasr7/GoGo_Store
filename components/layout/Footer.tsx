@@ -42,11 +42,11 @@ export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
               <h3 className="font-extrabold text-white text-lg tracking-wide">{activeStoreName}</h3>
             </div>
             <p className="text-stone-400 text-xs sm:text-sm leading-relaxed mb-4">
-              شغل كونكريت وديكور يدوي من البيت بأشكال كتير، تصميمات مودرن وبسيطة وتشطيب ناعم يشبه السيراميك، معمول بحب لكل بيت ومساحة.
+              شغل كونكريت وديكور يدوي من البيت بأشكال كتير، تصميمات مودرن وبسيطة وتشطيب ناعم يشبه السيراميك، معمول بتركيز ودقة وبأعلي جودة لكل بيت ومساحة.
             </p>
             <div className="flex items-center gap-2 text-xs text-brass-400 font-bold">
               <Sparkles className="w-4 h-4" />
-              <span>كونكريت | هاند ميد | تحف وديكورات مصنوعة بحب ✨</span>
+              <span>كونكريت | هاند ميد | تحف وديكورات بأعلي جودة وبأحتراف ✨</span>
             </div>
           </div>
 
@@ -113,9 +113,8 @@ export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
         {/* Bottom copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-3">
           <p>© {new Date().getFullYear()} Gogo Concrete Store. جميع الحقوق محفوظة.</p>
-          <div className="flex items-center gap-1.5">
-            <span>صُنع بشغف وحب للمنتج اليدوي في مصر</span>
-            <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
+          <div className="flex items-center gap-1.5 font-medium text-stone-400">
+            <span>صنع من قبل / AmrTec✔</span>
           </div>
         </div>
 

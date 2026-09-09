@@ -43,7 +43,7 @@ export default function Header({ logoUrl, storeName }: HeaderProps) {
               <span>{storeName || 'GOGO CONCRETE'}</span>
               <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-sand-200 font-medium">Handmade</span>
             </div>
-            <p className="text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">تحف وديكورات معمولـة بحب 🤍</p>
+            <p className="text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">تحف وديكورات معمولـة بتركيز ودقة وبأعلي جودة ✨</p>
           </div>
         </Link>
 

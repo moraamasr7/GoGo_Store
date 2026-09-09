@@ -68,7 +68,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="mt-4 p-4 rounded-2xl bg-sand-100/80 dark:bg-stone-900 border border-sand-200 dark:border-stone-800 text-xs text-stone-700 dark:text-stone-300 flex items-start gap-2.5">
             <Sparkles className="w-4 h-4 text-brass-500 shrink-0 mt-0.5" />
             <p className="leading-relaxed">
-              <strong>شغل يدوي معمول بحب:</strong> كل قطعة بنفذها يدويًا من البيت بتشطيب ناعم يشبه السيراميك في نعومته وأناقته لتضيف لمسة راقية لبيتك 🤍
+              <strong>شغل يدوي معمول بتركيز ودقة:</strong> كل قطعة بنفذها يدويًا من البيت بتشطيب ناعم بأعلي جودة وبأحتراف يشبه السيراميك في نعومته وأناقته لتضيف لمسة راقية لبيتك ✨
             </p>
           </div>
         </div>

@@ -44,7 +44,7 @@ export default async function HomePage() {
   ];
 
   const whatsappSpecialUrl = `https://wa.me/${(settings.whatsapp_number || '201000000000').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
-    'مرحباً Gogo Concrete 🌸 حابة استفسر عن تنفيذ لون أو شكل معين لديكورات الكونكريت 🤍'
+    'مرحباً Gogo Concrete 🌸 أود الاستفسار عن تنفيذ لون أو شكل معين لديكورات الكونكريت ✨'
   )}`;
 
   return (
@@ -69,12 +69,12 @@ export default async function HomePage() {
               {/* Bold Real Headline */}
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-stone-900 dark:text-white tracking-tight leading-[1.2] mb-5">
                 تحف وديكورات كونكريت <br />
-                <span className="text-brass-600 dark:text-brass-400 font-extrabold">معمولـة بحب 🤍</span>
+                <span className="text-brass-600 dark:text-brass-400 font-extrabold">معمولـة بتركيز ودقة 🤍</span>
               </h1>
 
               {/* Genuine Product Concept Subtitle */}
               <p className="text-sm sm:text-base text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl mb-7 font-normal">
-                تصميمات مودرن وبسيطة تناسب أي بيت. كل قطعة بنفذها يدويًا وباهتمام بكل التفاصيل، بتشطيب ناعم وهادي يشبه السيراميك وألوان هادية تليق على مساحتك.
+                تصميمات مودرن وبسيطة تناسب أي بيت. كل قطعة بنفذها يدويًا وباهتمام بكل التفاصيل، بتشطيب ناعم وهادي بأعلي جودة وبأحتراف يشبه السيراميك وألوان هادية تليق على مساحتك.
               </p>
 
               {/* Action Buttons */}
@@ -144,7 +144,7 @@ export default async function HomePage() {
                       <p className="text-xs sm:text-sm font-black text-stone-900 dark:text-white mt-0.5">يشبه السيراميك في نعومته وأناقته 🤍</p>
                     </div>
                     <span className="text-[10px] px-2.5 py-1 rounded-full bg-sand-100 dark:bg-stone-800 font-bold text-stone-800 dark:text-sand-200 border border-sand-200 dark:border-stone-700">
-                      معمول بحب ✨
+                      بأعلي جودة وبأحتراف ✨
                     </span>
                   </div>
                 </div>
@@ -286,7 +286,7 @@ export default async function HomePage() {
               القطع المتاحة للتنفيذ بأمر الله 🌸
             </h2>
             <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
-              كل قطعة معمولة بحب وتشطيب هادي. اختاري قطعة واحدة أو اجمعي طقم حسب رغبتك.
+              كل قطعة معمولة بتركيز ودقة وبأعلي جودة وتشطيب هادي. اختاري قطعة واحدة أو اجمعي طقم حسب رغبتك.
             </p>
           </div>
 
@@ -341,7 +341,7 @@ export default async function HomePage() {
               ومتاح تنفيذ أي ألوان، والأشكال اللي معروضة حالياً متاحة بأمر الله 🌸
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-              كل قطعة معمولة بحب وتشطيب هادي. لو حابة لون أو شكل معين أو تنسيق طقم مخصوص على ذوقك، ابعتي لنا خاص وهنساعدك بكل سرور. مبسوطة بوجودكم 🤍
+              كل قطعة معمولة بتركيز ودقة وبأعلي جودة وتشطيب هادي. لو أردتي لوناً أو شكلاً معيناً أو تنسيق طقم مخصوص على ذوقك، ابعتي لنا خاص وهنساعدك بكل سرور. مبسوطة بوجودكم ✨
             </p>
           </div>
 
@@ -379,7 +379,7 @@ export default async function HomePage() {
               من بودرة الكونكريت بتبدأ الحكاية… 🤍
             </h2>
             <p className="text-sm sm:text-base text-stone-700 dark:text-stone-300 leading-relaxed">
-              وبإيدي بتتحول لقطع ديكور وتحف فنية مختلفة، كل قطعة فيها تفاصيل وشغل يدوي معمول بحب.
+              وبإيدي بتتحول لقطع ديكور وتحف فنية مختلفة، كل قطعة فيها تفاصيل وشغل يدوي معمول بتركيز ودقة وبأعلي جودة.
             </p>
           </div>
 
@@ -435,7 +435,7 @@ export default async function HomePage() {
               <span>•</span>
               <span className="px-3 py-1 rounded-full bg-sand-100 dark:bg-stone-800 border border-sand-200 dark:border-stone-700">هاند ميد</span>
               <span>•</span>
-              <span className="px-3 py-1 rounded-full bg-sand-100 dark:bg-stone-800 border border-sand-200 dark:border-stone-700">تحف وديكورات مصنوعة بحب ✨</span>
+              <span className="px-3 py-1 rounded-full bg-sand-100 dark:bg-stone-800 border border-sand-200 dark:border-stone-700">تحف وديكورات بأعلي جودة وبأحتراف ✨</span>
             </div>
           </div>
 
