@@ -60,10 +60,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <Link
               key={cat.key}
               href={cat.key === 'all' ? '/products' : `/products?category=${cat.key}`}
-              className={`whitespace-nowrap px-4 py-2 rounded-xl text-xs font-bold transition-all ${
+              className={`whitespace-nowrap px-4 py-2.5 rounded-2xl text-xs font-bold transition-all duration-200 active:scale-95 ${
                 isActive
-                  ? 'bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 shadow-sm'
-                  : 'bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 border border-stone-200 dark:border-stone-800'
+                  ? 'bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 shadow-md shadow-stone-900/10 dark:shadow-brass-500/20 -translate-y-0.5'
+                  : 'bg-white dark:bg-[#181715] text-stone-700 dark:text-stone-300 hover:border-brass-500/50 dark:hover:border-brass-400/50 hover:text-stone-950 dark:hover:text-white border border-stone-200/90 dark:border-stone-800 shadow-xs'
               }`}
             >
               {cat.label}

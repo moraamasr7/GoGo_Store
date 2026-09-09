@@ -24,26 +24,30 @@ export function CourseCard({ course }: CourseCardProps) {
   };
 
   return (
-    <div className="group relative flex flex-col lg:flex-row bg-white dark:bg-stone-900/90 rounded-3xl border border-stone-200/80 dark:border-stone-800/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
-      
-      {/* Visual / Cover */}
-      <div className="relative lg:w-2/5 aspect-[16/10] lg:aspect-auto overflow-hidden bg-sand-100 dark:bg-stone-800">
-        <Image
-          src={course.imageUrl}
-          alt={course.title}
-          fill
-          sizes="(max-width: 1024px) 100vw, 40vw"
-          className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent lg:hidden" />
-        
-        {/* Floating badge */}
-        <div className="absolute top-4 right-4 z-10">
-          <span className="px-3 py-1 rounded-full text-xs font-bold bg-stone-900/90 dark:bg-brass-500 text-white dark:text-stone-950 backdrop-blur-md shadow-md">
-            {course.badge || 'ورشة تعليمية'}
-          </span>
+    <div className="group relative flex flex-col lg:flex-row rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-1">
+      {/* Outer border & ambient shadow layer */}
+      <div className="absolute inset-0 rounded-3xl pointer-events-none transition-all duration-500 border border-stone-200/90 dark:border-stone-800/90 shadow-md shadow-stone-900/5 dark:shadow-stone-950/40 group-hover:border-brass-500/50 dark:group-hover:border-brass-400/50 group-hover:shadow-2xl group-hover:shadow-stone-900/10 dark:group-hover:shadow-stone-950/80" />
+
+      {/* Surface layer */}
+      <div className="relative flex flex-col lg:flex-row flex-1 bg-white dark:bg-[#181715] rounded-3xl overflow-hidden">
+        {/* Visual / Cover */}
+        <div className="relative lg:w-2/5 aspect-[16/10] lg:aspect-auto overflow-hidden bg-sand-100 dark:bg-[#201F1B]">
+          <Image
+            src={course.imageUrl}
+            alt={course.title}
+            fill
+            sizes="(max-width: 1024px) 100vw, 40vw"
+            className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-950/60 via-transparent to-transparent lg:hidden" />
+          
+          {/* Floating badge */}
+          <div className="absolute top-4 right-4 z-10">
+            <span className="px-3 py-1 rounded-full text-xs font-bold bg-stone-900/95 dark:bg-brass-500 text-white dark:text-stone-950 backdrop-blur-md shadow-sm border border-white/20 dark:border-stone-900/20">
+              {course.badge || 'ورشة تعليمية'}
+            </span>
+          </div>
         </div>
-      </div>
 
       {/* Content */}
       <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between gap-6">
@@ -114,5 +118,6 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
 
     </div>
+  </div>
   );
 }

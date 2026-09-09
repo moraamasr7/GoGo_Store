@@ -28,20 +28,20 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     // Base styles: clear touch target, font weight, focus accessibility ring, active scale
     const baseClasses =
-      'relative inline-flex items-center justify-center font-bold tracking-tight select-none transition-all duration-200 outline-none rounded-2xl cursor-pointer disabled:cursor-not-allowed active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stone-900 dark:focus-visible:ring-brass-400 dark:focus-visible:ring-offset-stone-950';
+      'relative inline-flex items-center justify-center font-bold tracking-tight select-none transition-all duration-250 ease-out outline-none rounded-2xl cursor-pointer disabled:cursor-not-allowed active:scale-[0.96] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-stone-900 dark:focus-visible:ring-brass-400 dark:focus-visible:ring-offset-stone-950 will-change-transform';
 
     // Variant color mappings
     const variantClasses: Record<ButtonVariant, string> = {
       primary:
-        'bg-stone-900 text-sand-50 hover:bg-stone-800 shadow-sm dark:bg-brass-500 dark:text-stone-950 dark:hover:bg-brass-400 disabled:bg-stone-300 dark:disabled:bg-stone-800 disabled:text-stone-500',
+        'bg-stone-900 text-sand-50 hover:bg-stone-800 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-stone-900/15 dark:bg-brass-500 dark:text-stone-950 dark:hover:bg-brass-400 dark:hover:shadow-brass-500/25 disabled:bg-stone-300 dark:disabled:bg-stone-800 disabled:text-stone-500 disabled:hover:translate-y-0 disabled:hover:shadow-none',
       secondary:
-        'bg-sand-200/80 text-stone-900 hover:bg-sand-300/80 border border-sand-300/60 dark:bg-stone-800 dark:text-sand-100 dark:hover:bg-stone-700 dark:border-stone-700 disabled:opacity-50',
+        'bg-sand-200/80 text-stone-900 hover:bg-sand-300/80 hover:-translate-y-0.5 border border-sand-300/60 dark:bg-stone-800 dark:text-sand-100 dark:hover:bg-stone-700 dark:border-stone-700 disabled:opacity-50 disabled:hover:translate-y-0',
       outline:
-        'bg-transparent border border-stone-300 text-stone-800 hover:bg-stone-100 hover:border-stone-400 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800/80 dark:hover:border-stone-600 disabled:opacity-40',
+        'bg-transparent border border-stone-300 text-stone-800 hover:bg-stone-100 hover:border-stone-400 hover:-translate-y-0.5 dark:border-stone-700 dark:text-stone-200 dark:hover:bg-stone-800/80 dark:hover:border-stone-600 disabled:opacity-40 disabled:hover:translate-y-0',
       ghost:
         'bg-transparent text-stone-600 hover:bg-stone-100/80 hover:text-stone-900 dark:text-stone-400 dark:hover:bg-stone-800/60 dark:hover:text-stone-100 disabled:opacity-40',
       danger:
-        'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/60 dark:hover:bg-rose-950/70 disabled:opacity-50',
+        'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 hover:-translate-y-0.5 dark:bg-rose-950/40 dark:text-rose-300 dark:border-rose-900/60 dark:hover:bg-rose-950/70 disabled:opacity-50 disabled:hover:translate-y-0',
     };
 
     // Size mappings: ensuring min 44px height for touch comfort on md and lg

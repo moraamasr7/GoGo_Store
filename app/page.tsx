@@ -172,9 +172,9 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             
-            <div className="p-5 rounded-2xl bg-white dark:bg-stone-800/80 border border-sand-200/70 dark:border-stone-700/60 space-y-2">
-              <div className="w-9 h-9 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-800 dark:text-brass-300 font-bold text-sm">
-                ✔️
+            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
+              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">شغل Handmade</h3>
               <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
@@ -182,9 +182,9 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white dark:bg-stone-800/80 border border-sand-200/70 dark:border-stone-700/60 space-y-2">
-              <div className="w-9 h-9 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-800 dark:text-brass-300 font-bold text-sm">
-                ✔️
+            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
+              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">تشطيب نضيف وناعم</h3>
               <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
@@ -192,9 +192,9 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white dark:bg-stone-800/80 border border-sand-200/70 dark:border-stone-700/60 space-y-2">
-              <div className="w-9 h-9 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-800 dark:text-brass-300 font-bold text-sm">
-                ✔️
+            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
+              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">ألوان هادية ومودرن</h3>
               <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
@@ -202,9 +202,9 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white dark:bg-stone-800/80 border border-sand-200/70 dark:border-stone-700/60 space-y-2">
-              <div className="w-9 h-9 rounded-xl bg-sand-200 dark:bg-stone-700 flex items-center justify-center text-stone-800 dark:text-brass-300 font-bold text-sm">
-                ✔️
+            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
+              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-5 h-5" />
               </div>
               <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">أسعار بسيطة ومناسبة</h3>
               <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
@@ -303,7 +303,7 @@ export default async function HomePage() {
             <Link
               key={cat.key}
               href={cat.href}
-              className="whitespace-nowrap px-4 py-2 rounded-2xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-stone-400 dark:hover:border-stone-600 text-xs font-bold transition-all shadow-xs active:scale-95"
+              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-white dark:bg-[#181715] border border-stone-200/90 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-brass-500/50 dark:hover:border-brass-400/50 hover:text-stone-950 dark:hover:text-white hover:-translate-y-0.5 text-xs font-bold transition-all duration-200 shadow-xs active:scale-95"
             >
               {cat.label}
             </Link>
