@@ -23,22 +23,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+    <div className="max-w-5xl mx-auto px-3.5 sm:px-6 py-4 sm:py-8 md:py-12">
       
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-stone-500 dark:text-stone-400 mb-8">
-        <Link href="/" className="hover:text-stone-900 dark:hover:text-white">الرئيسية</Link>
+      <nav className="flex items-center gap-1.5 sm:gap-2 text-xs text-stone-500 dark:text-stone-400 mb-4 sm:mb-8 overflow-x-auto whitespace-nowrap scrollbar-none">
+        <Link href="/" className="hover:text-stone-900 dark:hover:text-white shrink-0">الرئيسية</Link>
         <span>/</span>
-        <Link href="/products" className="hover:text-stone-900 dark:hover:text-white">المنتجات</Link>
+        <Link href="/products" className="hover:text-stone-900 dark:hover:text-white shrink-0">المنتجات</Link>
         <span>/</span>
-        <span className="text-stone-900 dark:text-stone-200 font-bold">{product.name_ar}</span>
+        <span className="text-stone-900 dark:text-stone-200 font-bold truncate">{product.name_ar}</span>
       </nav>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
         
         {/* Gallery / Image Column */}
-        <div className="md:col-span-6 sticky top-24">
-          <div className="relative aspect-square w-full rounded-3xl overflow-hidden bg-sand-100 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 shadow-sm">
+        <div className="md:col-span-6 sticky top-20 sm:top-24">
+          <div className="relative aspect-square w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-sand-100 dark:bg-stone-900 border border-stone-200/80 dark:border-stone-800 shadow-sm">
             {product.image_url ? (
               <Image
                 src={product.image_url}
@@ -91,11 +91,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           {/* Price */}
-          <div className="py-4 border-y border-stone-200/80 dark:border-stone-800 my-4 flex items-baseline gap-3">
-            <span className="text-3xl font-black text-stone-950 dark:text-white font-mono">
+          <div className="py-3 sm:py-4 border-y border-stone-200/80 dark:border-stone-800 my-3 sm:my-4 flex flex-wrap items-baseline gap-2 sm:gap-3">
+            <span className="text-2xl sm:text-3xl font-black text-stone-950 dark:text-white font-mono whitespace-nowrap">
               {formatPrice(product.price)}
             </span>
-            <span className="text-xs text-stone-500 dark:text-stone-400">
+            <span className="text-[11px] sm:text-xs text-stone-500 dark:text-stone-400">
               (عربون 50% لتأكيد تنفيذ وحجز القطعة)
             </span>
           </div>

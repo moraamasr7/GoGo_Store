@@ -49,42 +49,42 @@ export default async function HomePage() {
   )}`;
 
   return (
-    <div className="flex flex-col gap-16 md:gap-24 pb-16">
+    <div className="flex flex-col gap-8 sm:gap-14 md:gap-20 pb-12 sm:pb-16">
       
       {/* ========================================================================= */}
       {/* 1. HERO SECTION: كونكريت Handmade + ديكور وتحف + تصميمات مودرن            */}
       {/* ========================================================================= */}
-      <section className="relative pt-6 sm:pt-10 md:pt-14 overflow-hidden">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <section className="relative pt-3 sm:pt-8 md:pt-12 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center">
             
             {/* Story & Typography Column */}
             <div className="lg:col-span-7 flex flex-col items-start text-right">
               
               {/* Natural Eyebrow */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sand-200/80 dark:bg-stone-800/80 border border-sand-300/60 dark:border-stone-700/60 text-stone-800 dark:text-brass-300 text-xs font-bold mb-5 shadow-xs">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-sand-200/80 dark:bg-stone-800/80 border border-sand-300/60 dark:border-stone-700/60 text-stone-800 dark:text-brass-300 text-[11px] sm:text-xs font-bold mb-3 sm:mb-5 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5 text-brass-500" />
                 <span>شغل كونكريت وديكور يدوي من البيت ✨</span>
               </div>
 
               {/* Bold Real Headline */}
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-stone-900 dark:text-white tracking-tight leading-[1.2] mb-5">
-                تحف وديكورات كونكريت <br />
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-stone-900 dark:text-white tracking-tight leading-[1.25] sm:leading-[1.2] mb-3 sm:mb-5">
+                تحف وديكورات كونكريت <br className="hidden sm:inline" />
                 <span className="text-brass-600 dark:text-brass-400 font-extrabold">معمولـة بتركيز ودقة 🤍</span>
               </h1>
 
               {/* Genuine Product Concept Subtitle */}
-              <p className="text-sm sm:text-base text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl mb-7 font-normal">
+              <p className="text-xs sm:text-base text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl mb-4 sm:mb-7 font-normal line-clamp-2 sm:line-clamp-none">
                 تصميمات مودرن وبسيطة تناسب أي بيت. كل قطعة بنفذها يدويًا وباهتمام بكل التفاصيل، بتشطيب ناعم وهادي بأعلي جودة وبأحتراف يشبه السيراميك وألوان هادية تليق على مساحتك.
               </p>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 w-full sm:w-auto mb-8">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 w-full sm:w-auto mb-5 sm:mb-8">
                 <Link href="/products" className="w-full sm:w-auto">
                   <Button
                     variant="primary"
                     size="lg"
-                    className="w-full sm:w-auto shadow-md"
+                    className="w-full sm:w-auto shadow-md h-11 sm:h-12 text-xs sm:text-sm font-bold"
                     rightIcon={<ArrowLeft className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
                   >
                     اختاري ستايلك وتصفحي المعرض ✨
@@ -95,7 +95,7 @@ export default async function HomePage() {
                   <Button
                     variant="secondary"
                     size="lg"
-                    className="w-full sm:w-auto"
+                    className="w-full sm:w-auto h-11 sm:h-12 text-xs sm:text-sm font-bold"
                   >
                     تتبع حالة طلبك
                   </Button>
@@ -103,21 +103,21 @@ export default async function HomePage() {
               </div>
 
               {/* Real Value Pillars Bar */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full pt-5 border-t border-stone-200/80 dark:border-stone-800/80 text-xs text-stone-700 dark:text-stone-300 font-semibold">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-2.5 w-full pt-3.5 sm:pt-5 border-t border-stone-200/80 dark:border-stone-800/80 text-[11px] sm:text-xs text-stone-700 dark:text-stone-300 font-semibold">
                 <div className="flex items-center gap-1.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>شغل Handmade</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>تشطيب نضيف وناعم</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>ألوان هادية ومودرن</span>
                 </div>
                 <div className="flex items-center gap-1.5">
-                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                  <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   <span>أسعار بسيطة ومناسبة</span>
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default async function HomePage() {
 
             {/* Visual Column: Genuine Piece Showcase */}
             <div className="lg:col-span-5 relative">
-              <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-xl shadow-stone-900/10 dark:shadow-stone-950/50 border-4 border-white dark:border-stone-800 bg-sand-200 dark:bg-stone-800">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] lg:aspect-[4/5] w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl shadow-stone-900/10 dark:shadow-stone-950/50 border-2 sm:border-4 border-white dark:border-stone-800 bg-sand-200 dark:bg-stone-800">
                 <Image
                   src={settings.hero_banner_url || "https://images.unsplash.com/photo-1594913785162-e678a0c23ee9?auto=format&fit=crop&w=1000&q=80"}
                   alt={`${settings.store_name} تحف وديكورات هاند ميد`}
@@ -138,14 +138,14 @@ export default async function HomePage() {
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-transparent to-transparent" />
                 
                 {/* Floating Micro-Card */}
-                <div className="absolute bottom-5 right-5 left-5 p-4 rounded-2xl bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-white/50 dark:border-stone-700 text-stone-900 dark:text-white shadow-lg">
+                <div className="absolute bottom-3 right-3 left-3 sm:bottom-5 sm:right-5 sm:left-5 p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-white/95 dark:bg-stone-900/95 backdrop-blur-md border border-white/50 dark:border-stone-700 text-stone-900 dark:text-white shadow-lg">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-[11px] font-bold text-brass-600 dark:text-brass-400">تشطيب ناعم وأنيق</p>
+                      <p className="text-[10px] sm:text-[11px] font-bold text-brass-600 dark:text-brass-400">تشطيب ناعم وأنيق</p>
                       <p className="text-xs sm:text-sm font-black text-stone-900 dark:text-white mt-0.5">يشبه السيراميك في نعومته وأناقته 🤍</p>
                     </div>
-                    <span className="text-[10px] px-2.5 py-1 rounded-full bg-sand-100 dark:bg-stone-800 font-bold text-stone-800 dark:text-sand-200 border border-sand-200 dark:border-stone-700">
-                      بأعلي جودة وبأحتراف ✨
+                    <span className="text-[9px] sm:text-[10px] px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full bg-sand-100 dark:bg-stone-800 font-bold text-stone-800 dark:text-sand-200 border border-sand-200 dark:border-stone-700">
+                      بأعلي جودة ✨
                     </span>
                   </div>
                 </div>
@@ -159,11 +159,11 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 2. NATURE OF WORK / المميزات الحقيقية لطبيعة الشغل اليدوي                  */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="p-6 sm:p-10 rounded-3xl bg-sand-100/70 dark:bg-stone-900 border border-sand-200/80 dark:border-stone-800">
+      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
+        <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-sand-100/70 dark:bg-stone-900 border border-sand-200/80 dark:border-stone-800">
           
-          <div className="text-center max-w-xl mx-auto mb-8">
-            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight mb-2">
+          <div className="text-center max-w-xl mx-auto mb-4 sm:mb-8">
+            <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight mb-1.5 sm:mb-2">
               شغل كونكريت يدوي من البيت بأشكال كتير ✨
             </h2>
             <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400">
@@ -171,44 +171,44 @@ export default async function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
             
-            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
-              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
-                <Check className="w-5 h-5" />
+            <div className="group p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-1.5 sm:space-y-2">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">شغل Handmade</h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
-                كل قطعة تُصنع يدويًا من البداية وباهتمام خاص بكل تفصيلة لتكون مميزة وتعيش في بيتك.
+              <h3 className="font-extrabold text-stone-900 dark:text-white text-xs sm:text-sm">شغل Handmade</h3>
+              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                كل قطعة تُصنع يدويًا وباهتمام خاص بكل تفصيلة لتكون مميزة وتعيش في بيتك.
               </p>
             </div>
 
-            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
-              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
-                <Check className="w-5 h-5" />
+            <div className="group p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-1.5 sm:space-y-2">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">تشطيب نضيف وناعم</h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
-                تشطيب ناعم وهادي يشبه السيراميك في نعومته وأناقته ليضيف لمسة ذوق عالي لأي مكان.
+              <h3 className="font-extrabold text-stone-900 dark:text-white text-xs sm:text-sm">تشطيب نضيف وناعم</h3>
+              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 leading-relaxed line-clamp-2 sm:line-clamp-none">
+                تشطيب ناعم وهادي يشبه السيراميك في نعومته وأناقته ليضيف لمسة ذوق عالي.
               </p>
             </div>
 
-            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
-              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
-                <Check className="w-5 h-5" />
+            <div className="group p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-1.5 sm:space-y-2">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">ألوان هادية ومودرن</h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+              <h3 className="font-extrabold text-stone-900 dark:text-white text-xs sm:text-sm">ألوان هادية ومودرن</h3>
+              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 leading-relaxed line-clamp-2 sm:line-clamp-none">
                 ألوان ترندي وراقية تليق على البيوت البسيطة والديكور العصري وتنسجم مع أي زاوية.
               </p>
             </div>
 
-            <div className="group p-5 rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-2">
-              <div className="w-10 h-10 rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-sm group-hover:scale-105 transition-transform">
-                <Check className="w-5 h-5" />
+            <div className="group p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-[#181715] border border-sand-200/90 dark:border-stone-800 shadow-sm hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 space-y-1.5 sm:space-y-2">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-sand-100 dark:bg-stone-800 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold text-xs sm:text-sm group-hover:scale-105 transition-transform">
+                <Check className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-              <h3 className="font-extrabold text-stone-900 dark:text-white text-sm">أسعار بسيطة ومناسبة</h3>
-              <p className="text-xs text-stone-500 dark:text-stone-400 leading-relaxed">
+              <h3 className="font-extrabold text-stone-900 dark:text-white text-xs sm:text-sm">أسعار بسيطة ومناسبة</h3>
+              <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 leading-relaxed line-clamp-2 sm:line-clamp-none">
                 قيمة حقيقية لقطع فنية هاند ميد من صنع إيدي بأسعار مناسبة ومعلنة بكل وضوح.
               </p>
             </div>
@@ -221,18 +221,18 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 3. BUILD YOUR SET: اختاري، ركّبي، واعملي ستايلك بنفسك ✨                  */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="p-7 sm:p-10 rounded-3xl bg-gradient-to-br from-white via-sand-50 to-sand-100 dark:from-stone-900 dark:via-stone-900 dark:to-stone-800/80 border border-sand-300/80 dark:border-stone-800 shadow-sm">
+      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
+        <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-white via-sand-50 to-sand-100 dark:from-stone-900 dark:via-stone-900 dark:to-stone-800/80 border border-sand-300/80 dark:border-stone-800 shadow-sm">
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
             
-            <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-xs font-bold">
+            <div className="lg:col-span-7 space-y-2.5 sm:space-y-3">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-[11px] sm:text-xs font-bold">
                 <SlidersHorizontal className="w-3.5 h-3.5" />
                 <span>تنسيق على ذوقك واحتياجك</span>
               </div>
               
-              <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+              <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
                 اختاري، ركّبي، واعملي ستايلك بنفسك ✨
               </h2>
 
@@ -240,28 +240,28 @@ export default async function HomePage() {
                 قطع ديكور يدوية بتصميم مينيمال وألوان ترندي تناسب أي مساحة. تقدري تختاري قطعة واحدة أو تكوّني الطقم اللي يعجبك حسب ذوقك واحتياجك، وتنسقيه بطريقتك الخاصة.
               </p>
 
-              {/* 3-Step Flow */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3">
-                <div className="p-3 rounded-xl bg-white dark:bg-stone-800/70 border border-sand-200 dark:border-stone-700">
-                  <span className="text-[11px] font-mono font-bold text-brass-600 dark:text-brass-400 block mb-0.5">1. اختاري</span>
-                  <span className="text-xs font-bold text-stone-800 dark:text-stone-200 block">قطعة واحدة أو أكتر</span>
+              {/* 3-Step Flow: Compact on mobile */}
+              <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-2 sm:pt-3">
+                <div className="p-2 sm:p-3 rounded-xl bg-white dark:bg-stone-800/70 border border-sand-200 dark:border-stone-700 text-center sm:text-right">
+                  <span className="text-[10px] sm:text-[11px] font-mono font-bold text-brass-600 dark:text-brass-400 block mb-0.5">1. اختاري</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-stone-800 dark:text-stone-200 block">قطعة أو أكتر</span>
                 </div>
-                <div className="p-3 rounded-xl bg-white dark:bg-stone-800/70 border border-sand-200 dark:border-stone-700">
-                  <span className="text-[11px] font-mono font-bold text-brass-600 dark:text-brass-400 block mb-0.5">2. ركّبي</span>
-                  <span className="text-xs font-bold text-stone-800 dark:text-stone-200 block">نسّقي الأشكال والألوان</span>
+                <div className="p-2 sm:p-3 rounded-xl bg-white dark:bg-stone-800/70 border border-sand-200 dark:border-stone-700 text-center sm:text-right">
+                  <span className="text-[10px] sm:text-[11px] font-mono font-bold text-brass-600 dark:text-brass-400 block mb-0.5">2. ركّبي</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-stone-800 dark:text-stone-200 block">نسّقي الألوان</span>
                 </div>
-                <div className="p-3 rounded-xl bg-white dark:bg-stone-800/70 border border-sand-200 dark:border-stone-700">
-                  <span className="text-[11px] font-mono font-bold text-brass-600 dark:text-brass-400 block mb-0.5">3. كوّني طقمك</span>
-                  <span className="text-xs font-bold text-stone-800 dark:text-stone-200 block">واعملي ستايلك الخاص</span>
+                <div className="p-2 sm:p-3 rounded-xl bg-white dark:bg-stone-800/70 border border-sand-200 dark:border-stone-700 text-center sm:text-right">
+                  <span className="text-[10px] sm:text-[11px] font-mono font-bold text-brass-600 dark:text-brass-400 block mb-0.5">3. كوّني طقمك</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-stone-800 dark:text-stone-200 block">ستايلك الخاص</span>
                 </div>
               </div>
 
             </div>
 
-            <div className="lg:col-span-5 flex flex-col items-center sm:items-start lg:items-center justify-center gap-3">
+            <div className="lg:col-span-5 flex flex-col items-center sm:items-start lg:items-center justify-center gap-2.5 sm:gap-3">
               <p className="text-xs font-bold text-stone-500 dark:text-stone-400">جربي وشوفي بنفسك 🌸</p>
               <Link href="/products" className="w-full sm:w-auto">
-                <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-md" rightIcon={<ArrowLeft className="w-4 h-4" />}>
+                <Button variant="primary" size="lg" className="w-full sm:w-auto shadow-md h-11 sm:h-12 text-xs sm:text-sm font-bold" rightIcon={<ArrowLeft className="w-4 h-4" />}>
                   تصفحي القطع وكوني طقمك
                 </Button>
               </Link>
@@ -276,10 +276,10 @@ export default async function HomePage() {
       {/* 3.5 PROMOTIONAL BANNER (من الإعدادات والعروض بمقاس متناسق وجذاب)             */}
       {/* ========================================================================= */}
       {(settings.promo_banner_active !== false && (settings.promo_banner_image_url || activeOffer)) && (
-        <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
+        <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
           <Link
             href={settings.promo_banner_link || '/products'}
-            className="group relative block w-full aspect-[21/9] sm:aspect-[24/8] md:aspect-[28/8] rounded-3xl overflow-hidden border border-stone-200/90 dark:border-stone-800 shadow-lg shadow-stone-950/5 dark:shadow-stone-950/60 transition-all duration-500 hover:shadow-2xl hover:border-brass-500/50"
+            className="group relative block w-full aspect-[16/9] sm:aspect-[24/8] md:aspect-[28/8] rounded-2xl sm:rounded-3xl overflow-hidden border border-stone-200/90 dark:border-stone-800 shadow-lg shadow-stone-950/5 dark:shadow-stone-950/60 transition-all duration-500 hover:shadow-2xl hover:border-brass-500/50"
           >
             <Image
               src={settings.promo_banner_image_url || activeOffer?.image_url || "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1400&q=80"}
@@ -289,17 +289,17 @@ export default async function HomePage() {
               className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.03]"
             />
             {/* Dark & Brass Atmosphere Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-stone-950/55 to-transparent flex flex-col justify-center px-6 sm:px-12 md:px-16 text-white space-y-2.5">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brass-500 text-stone-950 font-black text-xs self-start shadow-md">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-950/90 via-stone-950/55 to-transparent flex flex-col justify-center px-4 sm:px-12 md:px-16 text-white space-y-1.5 sm:space-y-2.5">
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-brass-500 text-stone-950 font-black text-[10px] sm:text-xs self-start shadow-md">
+                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                 <span>{settings.promo_banner_badge || activeOffer?.badge_text || 'عرض خاص 🔥'}</span>
               </span>
-              <h3 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight max-w-xl text-sand-50 group-hover:text-brass-300 transition-colors">
+              <h3 className="text-sm sm:text-2xl md:text-3xl font-black tracking-tight max-w-xl text-sand-50 group-hover:text-brass-300 transition-colors line-clamp-2">
                 {settings.promo_banner_title || activeOffer?.title || 'تشكيلة مميزة من الديكورات بأعلي جودة'}
               </h3>
-              <div className="flex items-center gap-2 text-xs font-bold text-sand-200 pt-1">
+              <div className="flex items-center gap-1.5 text-[11px] sm:text-xs font-bold text-sand-200 pt-0.5">
                 <span>تصفحي العرض الآن</span>
-                <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1 text-brass-400" />
+                <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-brass-400" />
               </div>
             </div>
           </Link>
@@ -309,18 +309,18 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 4. PRODUCT SHOWCASE: الأشكال والألوان المعروضة حالياً متاحة للتنفيذ       */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full space-y-6">
+      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-4 sm:space-y-6">
         
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
           <div>
-            <div className="inline-flex items-center gap-1 text-xs font-bold text-brass-600 dark:text-brass-400 mb-1">
+            <div className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400 mb-1">
               <span>الصور موجودة وأسعار بسيطة ✨</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+            <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
               القطع المتاحة للتنفيذ بأمر الله 🌸
             </h2>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
+            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5 sm:mt-1">
               كل قطعة معمولة بتركيز ودقة وبأعلي جودة وتشطيب هادي. اختاري قطعة واحدة أو اجمعي طقم حسب رغبتك.
             </p>
           </div>
@@ -332,29 +332,29 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        {/* Category Filter Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+        {/* Category Filter Pills: Compact horizontal scroll without overflow */}
+        <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1.5 -mx-3.5 px-3.5 sm:mx-0 sm:px-0 scrollbar-none">
           {categories.map((cat) => (
             <Link
               key={cat.key}
               href={cat.href}
-              className="whitespace-nowrap px-4 py-2.5 rounded-2xl bg-white dark:bg-[#181715] border border-stone-200/90 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-brass-500/50 dark:hover:border-brass-400/50 hover:text-stone-950 dark:hover:text-white hover:-translate-y-0.5 text-xs font-bold transition-all duration-200 shadow-xs active:scale-95"
+              className="whitespace-nowrap px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl bg-white dark:bg-[#181715] border border-stone-200/90 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:border-brass-500/50 dark:hover:border-brass-400/50 hover:text-stone-950 dark:hover:text-white hover:-translate-y-0.5 text-[11px] sm:text-xs font-bold transition-all duration-200 shadow-xs active:scale-95"
             >
               {cat.label}
             </Link>
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        {/* Products Grid: Exact 2-col on mobile, gap-2.5 sm:gap-4 md:gap-6 */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4 md:gap-6">
           {featuredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        <div className="text-center sm:hidden pt-2">
+        <div className="text-center sm:hidden pt-1">
           <Link href="/products" className="w-full inline-block">
-            <Button variant="primary" size="md" className="w-full">
+            <Button variant="primary" size="md" className="w-full h-11 text-xs font-bold shadow-sm">
               عرض جميع القطع في المعرض
             </Button>
           </Link>
@@ -365,14 +365,14 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 5. CUSTOMIZATION & SPECIAL INQUIRY: لو حابة لون أو شكل معين               */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="p-6 sm:p-8 rounded-3xl bg-sand-100/90 dark:bg-stone-900 border border-sand-300/80 dark:border-stone-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xs">
+      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
+        <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-sand-100/90 dark:bg-stone-900 border border-sand-300/80 dark:border-stone-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 shadow-xs">
           
-          <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-xs font-bold">
+          <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-[11px] sm:text-xs font-bold">
               <span>طلب خاص 🙋‍♀️💜</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-stone-900 dark:text-white tracking-tight">
+            <h3 className="text-lg sm:text-2xl font-black text-stone-900 dark:text-white tracking-tight">
               ومتاح تنفيذ أي ألوان، والأشكال اللي معروضة حالياً متاحة بأمر الله 🌸
             </h3>
             <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
@@ -389,7 +389,7 @@ export default async function HomePage() {
             <Button
               variant="primary"
               size="lg"
-              className="w-full md:w-auto shadow-sm"
+              className="w-full md:w-auto shadow-sm h-11 sm:h-12 text-xs sm:text-sm font-bold"
               leftIcon={<MessageCircle className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
             >
               ابعتي لنا على الخاص (واتساب) 💬
@@ -402,58 +402,58 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 6. BRAND STORY: "من بودرة الكونكريت بتبدأ الحكاية… 🤍"                     */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 w-full">
-        <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-stone-900 border border-sand-200/90 dark:border-stone-800 shadow-sm space-y-8">
+      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
+        <div className="p-5 sm:p-12 rounded-2xl sm:rounded-3xl bg-white dark:bg-stone-900 border border-sand-200/90 dark:border-stone-800 shadow-sm space-y-5 sm:space-y-8">
           
           {/* Story Intro */}
-          <div className="max-w-2xl space-y-3">
-            <span className="text-xs font-bold text-brass-600 dark:text-brass-400 block">
+          <div className="max-w-2xl space-y-2 sm:space-y-3">
+            <span className="text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400 block">
               عن الشغل والقصة 🏺🤍
             </span>
-            <h2 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight leading-snug">
+            <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight leading-snug">
               من بودرة الكونكريت بتبدأ الحكاية… 🤍
             </h2>
-            <p className="text-sm sm:text-base text-stone-700 dark:text-stone-300 leading-relaxed">
+            <p className="text-xs sm:text-base text-stone-700 dark:text-stone-300 leading-relaxed">
               وبإيدي بتتحول لقطع ديكور وتحف فنية مختلفة، كل قطعة فيها تفاصيل وشغل يدوي معمول بتركيز ودقة وبأعلي جودة.
             </p>
           </div>
 
-          {/* Genuine Types Cards Mentioned in Reference */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-1">
-              <span className="text-xl block">☕</span>
-              <span className="text-xs font-bold text-stone-900 dark:text-white block">الكوسترات</span>
-              <span className="text-[10px] text-stone-500 dark:text-stone-400">بأشكال وتصميمات كتير</span>
+          {/* Genuine Types Cards: 3 columns on mobile, 6 on desktop */}
+          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3">
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-0.5 sm:space-y-1">
+              <span className="text-lg sm:text-xl block">☕</span>
+              <span className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white block">الكوسترات</span>
+              <span className="text-[9px] sm:text-[10px] text-stone-500 dark:text-stone-400 block">تصميمات كتير</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-1">
-              <span className="text-xl block">🍽️</span>
-              <span className="text-xs font-bold text-stone-900 dark:text-white block">الصواني</span>
-              <span className="text-[10px] text-stone-500 dark:text-stone-400">ديكور وتقديم راقي</span>
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-0.5 sm:space-y-1">
+              <span className="text-lg sm:text-xl block">🍽️</span>
+              <span className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white block">الصواني</span>
+              <span className="text-[9px] sm:text-[10px] text-stone-500 dark:text-stone-400 block">ديكور وتقديم</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-1">
-              <span className="text-xl block">🪵</span>
-              <span className="text-xs font-bold text-stone-900 dark:text-white block">المباخر</span>
-              <span className="text-[10px] text-stone-500 dark:text-stone-400">عصرية وأنيقة</span>
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-0.5 sm:space-y-1">
+              <span className="text-lg sm:text-xl block">🪵</span>
+              <span className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white block">المباخر</span>
+              <span className="text-[9px] sm:text-[10px] text-stone-500 dark:text-stone-400 block">عصرية وأنيقة</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-1">
-              <span className="text-xl block">🕯️</span>
-              <span className="text-xs font-bold text-stone-900 dark:text-white block">حوامل الشموع</span>
-              <span className="text-[10px] text-stone-500 dark:text-stone-400">دفء وأجواء هادية</span>
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-0.5 sm:space-y-1">
+              <span className="text-lg sm:text-xl block">🕯️</span>
+              <span className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white block">حوامل الشموع</span>
+              <span className="text-[9px] sm:text-[10px] text-stone-500 dark:text-stone-400 block">أجواء هادية</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-1">
-              <span className="text-xl block">💍</span>
-              <span className="text-xs font-bold text-stone-900 dark:text-white block">علب المجوهرات</span>
-              <span className="text-[10px] text-stone-500 dark:text-stone-400">لحفظ مقتنياتك</span>
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-0.5 sm:space-y-1">
+              <span className="text-lg sm:text-xl block">💍</span>
+              <span className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white block">علب مجوهرات</span>
+              <span className="text-[9px] sm:text-[10px] text-stone-500 dark:text-stone-400 block">لحفظ مقتنياتك</span>
             </div>
 
-            <div className="p-4 rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-1">
-              <span className="text-xl block">🏺</span>
-              <span className="text-xs font-bold text-stone-900 dark:text-white block">التحف والفازات</span>
-              <span className="text-[10px] text-stone-500 dark:text-stone-400">قطع ديكور مميزة</span>
+            <div className="p-2.5 sm:p-4 rounded-xl sm:rounded-2xl bg-sand-50 dark:bg-stone-800/60 border border-sand-200/60 dark:border-stone-700/60 text-center space-y-0.5 sm:space-y-1">
+              <span className="text-lg sm:text-xl block">🏺</span>
+              <span className="text-[11px] sm:text-xs font-bold text-stone-900 dark:text-white block">تحف وفازات</span>
+              <span className="text-[9px] sm:text-[10px] text-stone-500 dark:text-stone-400 block">قطع مميزة</span>
             </div>
           </div>
 

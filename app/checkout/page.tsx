@@ -134,24 +134,24 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 md:py-12">
+    <div className="max-w-5xl mx-auto px-3.5 sm:px-6 py-5 sm:py-8 md:py-12">
       
-      <div className="mb-8">
-        <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+      <div className="mb-5 sm:mb-8">
+        <h1 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
           إتمام الطلب وسداد العربون
         </h1>
-        <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-1">
+        <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5 sm:mt-1">
           خطوة بسيطة لتأكيد حجز وتنفيذ القطع يدويًا بتركيز ودقة وبأعلي جودة ✨
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 items-start">
         
         {/* Left/Main Column: Form Inputs */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="lg:col-span-7 space-y-4 sm:space-y-6">
           
           {/* 1. Customer Details Card */}
-          <div className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-4">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-3 sm:space-y-4">
             <h2 className="text-sm font-black text-stone-900 dark:text-white flex items-center gap-2">
               <span className="w-5 h-5 rounded-full bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 text-[11px] font-mono flex items-center justify-center">1</span>
               <span>بيانات التوصيل والتواصل</span>
@@ -358,42 +358,42 @@ export default function CheckoutPage() {
         </div>
 
         {/* Right Column: Order Summary & Submit Button */}
-        <div className="lg:col-span-5 space-y-4 sticky top-24">
+        <div className="lg:col-span-5 space-y-4 sticky top-20 sm:top-24">
           
-          <div className="p-6 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-4">
-            <h2 className="text-sm font-black text-stone-900 dark:text-white border-b border-stone-100 dark:border-stone-800 pb-3">
+          <div className="p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-white dark:bg-stone-900 border border-stone-200/90 dark:border-stone-800 shadow-sm space-y-3 sm:space-y-4">
+            <h2 className="text-xs sm:text-sm font-black text-stone-900 dark:text-white border-b border-stone-100 dark:border-stone-800 pb-2.5 sm:pb-3">
               مراجعة الطلب ({items.reduce((s, i) => s + i.quantity, 0)} قطعة)
             </h2>
 
             {/* Items mini list */}
-            <div className="space-y-3 max-h-56 overflow-y-auto pr-1">
+            <div className="space-y-2.5 max-h-56 overflow-y-auto pr-1">
               {items.map(({ product, quantity, selected_color }) => (
-                <div key={`${product.id}-${selected_color || ''}`} className="flex items-center justify-between text-xs">
-                  <div className="flex-1 pr-2">
+                <div key={`${product.id}-${selected_color || ''}`} className="flex items-center justify-between text-xs gap-2">
+                  <div className="flex-1 min-w-0 pr-1">
                     <p className="font-bold text-stone-900 dark:text-white line-clamp-1">{product.name_ar}</p>
-                    <p className="text-[11px] text-stone-400">
+                    <p className="text-[10px] sm:text-[11px] text-stone-400 truncate">
                       {quantity} × {formatPrice(product.price)} {selected_color ? `(${selected_color})` : ''}
                     </p>
                   </div>
-                  <span className="font-mono font-bold text-stone-800 dark:text-stone-200">
+                  <span className="font-mono font-bold text-stone-800 dark:text-stone-200 whitespace-nowrap shrink-0">
                     {formatPrice(product.price * quantity)}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="border-t border-stone-100 dark:border-stone-800 pt-3 space-y-2 text-xs">
-              <div className="flex justify-between text-stone-600 dark:text-stone-400">
+            <div className="border-t border-stone-100 dark:border-stone-800 pt-2.5 sm:pt-3 space-y-2 text-xs">
+              <div className="flex justify-between items-center text-stone-600 dark:text-stone-400">
                 <span>إجمالي الطلب:</span>
-                <span className="font-mono font-bold text-stone-900 dark:text-white">{formatPrice(subtotal)}</span>
+                <span className="font-mono font-bold text-stone-900 dark:text-white whitespace-nowrap">{formatPrice(subtotal)}</span>
               </div>
-              <div className="flex justify-between font-bold text-stone-900 dark:text-white bg-sand-100 dark:bg-stone-800 p-3 rounded-xl border border-sand-200 dark:border-stone-700">
-                <span>العربون المطلوب الآن ({depositPercentage}%):</span>
-                <span className="font-mono text-brass-600 dark:text-brass-400">{formatPrice(depositAmount)}</span>
+              <div className="flex justify-between items-center font-bold text-stone-900 dark:text-white bg-sand-100 dark:bg-stone-800 p-2.5 sm:p-3 rounded-xl border border-sand-200 dark:border-stone-700">
+                <span className="text-[11px] sm:text-xs">العربون المطلوب ({depositPercentage}%):</span>
+                <span className="font-mono text-brass-600 dark:text-brass-400 whitespace-nowrap">{formatPrice(depositAmount)}</span>
               </div>
-              <div className="flex justify-between text-stone-500 dark:text-stone-400">
+              <div className="flex justify-between items-center text-stone-500 dark:text-stone-400">
                 <span>المتبقي عند الشحن:</span>
-                <span className="font-mono">{formatPrice(remainingAmount)}</span>
+                <span className="font-mono font-bold whitespace-nowrap">{formatPrice(remainingAmount)}</span>
               </div>
             </div>
 
@@ -402,13 +402,13 @@ export default function CheckoutPage() {
               variant="primary"
               size="lg"
               isLoading={isSubmitting}
-              className="w-full shadow-md py-4"
+              className="w-full shadow-md h-11 sm:h-12 text-xs sm:text-sm font-bold"
               rightIcon={<CheckCircle2 className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
             >
               تأكيد الطلب وإرسال الإيصال
             </Button>
 
-            <div className="text-[11px] text-stone-500 dark:text-stone-400 space-y-1.5 pt-2 border-t border-stone-100 dark:border-stone-800">
+            <div className="text-[10px] sm:text-[11px] text-stone-500 dark:text-stone-400 space-y-1.5 pt-2 border-t border-stone-100 dark:border-stone-800">
               <div className="flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>يتم مراجعة الإيصال وتأكيد بدء الصب خلال ساعتين.</span>

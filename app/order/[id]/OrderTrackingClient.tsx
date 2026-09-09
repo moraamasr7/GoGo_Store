@@ -96,11 +96,11 @@ export default function OrderTrackingClient({ initialOrder, settings }: OrderTra
   );
 
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 md:py-14">
+    <div className="max-w-3xl mx-auto px-3.5 sm:px-6 py-5 sm:py-8 md:py-14">
       
       {/* Top Banner with Realtime Status Badge */}
-      <div className="text-center mb-10">
-        <div className="flex items-center justify-center gap-2 mb-3">
+      <div className="text-center mb-6 sm:mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-xs font-mono font-bold border border-sand-300 dark:border-stone-700">
             <span>رقم الطلب: #{order.order_number}</span>
           </div>
@@ -115,7 +115,7 @@ export default function OrderTrackingClient({ initialOrder, settings }: OrderTra
           </div>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl font-black text-stone-900 dark:text-white mb-2">
+        <h1 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white mb-1.5 sm:mb-2">
           شكراً لك، {order.customer_name}! 🏺✨
         </h1>
         <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-400">
@@ -124,10 +124,10 @@ export default function OrderTrackingClient({ initialOrder, settings }: OrderTra
       </div>
 
       {/* Progress Timeline */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm mb-8 transition-all">
-        <div className="flex items-center justify-between mb-6 pb-3 border-b border-stone-100 dark:border-stone-800">
-          <h2 className="text-sm font-black text-stone-900 dark:text-white">مراحل تنفيذ الطلب</h2>
-          <span className="text-xs text-stone-400 dark:text-stone-500 font-mono">تتحدث فورياً دون الحاجة لتحديث الصفحة</span>
+      <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 shadow-sm mb-6 sm:mb-8 transition-all">
+        <div className="flex items-center justify-between mb-4 sm:mb-6 pb-2.5 sm:pb-3 border-b border-stone-100 dark:border-stone-800 gap-2">
+          <h2 className="text-xs sm:text-sm font-black text-stone-900 dark:text-white">مراحل تنفيذ الطلب</h2>
+          <span className="text-[10px] sm:text-xs text-stone-400 dark:text-stone-500 font-mono truncate">تتحدث فورياً</span>
         </div>
 
         {isCancelled ? (

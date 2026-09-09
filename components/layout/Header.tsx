@@ -20,12 +20,12 @@ export default function Header({ logoUrl, storeName }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 bg-sand-50/90 dark:bg-stone-950/90 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800 transition-colors duration-200">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-18 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-3.5 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         
         {/* Brand Logo & Tagline */}
-        <Link href="/" className="flex items-center gap-2.5 group">
+        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
           {logoUrl ? (
-            <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm border border-stone-200 dark:border-stone-700">
+            <div className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-xl overflow-hidden shadow-sm border border-stone-200 dark:border-stone-700">
               <Image
                 src={logoUrl}
                 alt={storeName || 'GOGO CONCRETE'}
@@ -34,16 +34,16 @@ export default function Header({ logoUrl, storeName }: HeaderProps) {
               />
             </div>
           ) : (
-            <div className="w-10 h-10 rounded-xl bg-stone-800 dark:bg-stone-800 flex items-center justify-center text-sand-50 shadow-sm group-hover:bg-stone-900 dark:group-hover:bg-stone-700 transition-colors border border-stone-700/50">
-              <span className="font-extrabold text-lg tracking-wider text-brass-400">G</span>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-stone-800 dark:bg-stone-800 flex items-center justify-center text-sand-50 shadow-sm group-hover:bg-stone-900 dark:group-hover:bg-stone-700 transition-colors border border-stone-700/50">
+              <span className="font-extrabold text-base sm:text-lg tracking-wider text-brass-400">G</span>
             </div>
           )}
           <div>
-            <div className="font-bold text-lg tracking-wide text-stone-900 dark:text-white flex items-center gap-1.5">
+            <div className="font-bold text-sm sm:text-base md:text-lg tracking-wide text-stone-900 dark:text-white flex items-center gap-1.5">
               <span>{storeName || 'GOGO CONCRETE'}</span>
-              <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-sand-200 font-medium">Handmade</span>
+              <span className="text-[10px] sm:text-[11px] px-1.5 py-0.5 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-sand-200 font-medium">Handmade</span>
             </div>
-            <p className="text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">تحف وديكورات معمولـة بتركيز ودقة وبأعلي جودة ✨</p>
+            <p className="hidden sm:block text-[11px] text-stone-500 dark:text-stone-400 tracking-tight">تحف وديكورات معمولـة بتركيز ودقة وبأعلي جودة ✨</p>
           </div>
         </Link>
 
@@ -76,13 +76,13 @@ export default function Header({ logoUrl, storeName }: HeaderProps) {
         </nav>
 
         {/* Action Buttons: ThemeToggle + Search + Cart */}
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex items-center gap-1.5 sm:gap-3">
           {/* Theme Switcher */}
           <ThemeToggle />
 
           <Link
             href="/products"
-            className="md:hidden p-2 rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800 transition-colors"
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl text-stone-600 dark:text-stone-300 hover:bg-stone-200/60 dark:hover:bg-stone-800 transition-colors"
             title="تصفح المنتجات"
           >
             <Search className="w-5 h-5" />
@@ -90,13 +90,13 @@ export default function Header({ logoUrl, storeName }: HeaderProps) {
 
           <Link
             href="/cart"
-            className="relative flex items-center gap-2 px-3.5 py-2 rounded-xl bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 hover:bg-stone-800 dark:hover:bg-brass-400 transition-all shadow-sm active:scale-95"
+            className="relative flex items-center justify-center gap-1.5 sm:gap-2 h-10 px-3 sm:px-3.5 rounded-xl bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 hover:bg-stone-800 dark:hover:bg-brass-400 transition-all shadow-sm active:scale-95"
             aria-label="سلة التسوق"
           >
-            <ShoppingBag className="w-4 h-4 text-brass-400 dark:text-stone-950" />
+            <ShoppingBag className="w-4 h-4 text-brass-400 dark:text-stone-950 shrink-0" />
             <span className="text-xs font-bold hidden sm:inline">السلة</span>
             {itemCount > 0 && (
-              <span className="inline-flex items-center justify-center min-w-[20px] h-5 px-1.5 text-[11px] font-bold rounded-full bg-brass-500 dark:bg-stone-950 text-stone-900 dark:text-brass-400">
+              <span className="inline-flex items-center justify-center min-w-[18px] sm:min-w-[20px] h-4.5 sm:h-5 px-1 sm:px-1.5 text-[10px] sm:text-[11px] font-bold rounded-full bg-brass-500 dark:bg-stone-950 text-stone-900 dark:text-brass-400">
                 {itemCount}
               </span>
             )}
