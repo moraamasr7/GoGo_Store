@@ -1,4 +1,4 @@
-﻿export interface Course {
+export interface Course {
   id: string;
   title: string;
   subtitle: string;
@@ -16,8 +16,8 @@
 export const sampleCourses: Course[] = [
   {
     id: 'course-master-concrete',
-    title: 'أسرار صب ومعالجة الكونكريت الديكوري الملون',
-    subtitle: 'تعلمي خطوة بخطوة كيفية خلط البودرة، صب القوالب بدون فقاعات هواء، واستخراج ألوان متموجة رخامية فاخرة مع طبقات العزل الحجرية.',
+    title: 'أسرار صب ومعالجة القطع الديكورية الفاخرة',
+    subtitle: 'تعلمي خطوة بخطوة كيفية خلط البودرة، صب القوالب بدون فقاعات هواء، واستخراج ألوان متموجة رخامية فاخرة مع طبقات العزل والحماية.',
     level: 'شامل ومتقدم',
     price: 850,
     originalPrice: 1200,
@@ -31,7 +31,7 @@ export const sampleCourses: Course[] = [
   {
     id: 'course-terrazzo-craft',
     title: 'ورشة فن التيرازو (Terrazzo) والتشطيب المعماري',
-    subtitle: 'فن كسر الحجر والرقائق الملونة داخل القطع الخرسانية لتصميم صواني وكوسترز فنية بلمسة إيطالية يدوية.',
+    subtitle: 'فن كسر الحجر والرقائق الملونة داخل القطع الديكورية لتصميم صواني وكوسترز فنية بلمسة إيطالية يدوية.',
     level: 'مبتدئ',
     price: 600,
     originalPrice: 850,

@@ -16,6 +16,7 @@ import {
   PackageCheck
 } from 'lucide-react';
 import { getActiveProducts, getActiveOffers, getPublicSettings } from '@/lib/supabase';
+import { DEFAULT_CATEGORY_CONFIGS, DEFAULT_COLLECTION_CONFIGS } from '@/types/database';
 import ProductCard from '@/components/products/ProductCard';
 import { Button } from '@/components/ui/Button';
 
@@ -23,26 +24,44 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 export default async function HomePage() {
-  const [products, offers, settings, ramadanProducts] = await Promise.all([
-    getActiveProducts({ limit: 8 }),
+  const settings = await getPublicSettings();
+
+  // Find active seasonal collection
+  const collectionsList = (settings.catalog_collections_config && settings.catalog_collections_config.length > 0)
+    ? settings.catalog_collections_config
+    : DEFAULT_COLLECTION_CONFIGS;
+  
+  const activeSeasonalCollection = collectionsList.find(c => c.is_active && c.homepage_visible) || collectionsList[0];
+  const seasonalKey = activeSeasonalCollection?.key || 'ramadan';
+
+  const [allProducts, offers, seasonalProducts] = await Promise.all([
+    getActiveProducts({ limit: 12 }),
     getActiveOffers(),
-    getPublicSettings(),
-    getActiveProducts({ collection: 'ramadan', limit: 4 }),
+    getActiveProducts({ collection: seasonalKey, limit: 4 }),
   ]);
 
   const activeOffer = offers.length > 0 ? offers[0] : null;
-  const featuredProducts = products.slice(0, 6);
 
-  // Core Visual Categories
-  const visualCategories = [
-    { key: 'gift_sets', label: 'أطقم هدايا جاهزة', badge: 'جاهز للإهداء 🎁', desc: 'مجموعات منسقة راقية للإهداء', icon: '🎁', href: '/products?category=gift_sets', color: 'from-amber-500/10 to-brass-500/20' },
-    { key: 'ready_sets', label: 'أطقم ديكورات جاهزة', badge: 'تنسيق البيت 🤎', desc: 'أطقم مختارة بعناية لصالونك ومكتبك', icon: '🤎', href: '/products?category=ready_sets', color: 'from-stone-500/10 to-sand-500/20' },
-    { key: 'trays', label: 'صواني وديكورات', badge: 'تقديم وأناقة ✨', desc: 'صواني بيضاوية ودائرية متعددة الاستخدام', icon: '🍽️', href: '/products?category=trays', color: 'from-sand-300/20 to-stone-400/10' },
-    { key: 'candle_holders', label: 'شمعدانات ومباخر', badge: 'أجواء دافئة 🕯️', desc: 'مباخر عصرية وحوامل شموع فاخرة', icon: '🪵', href: '/products?category=candle_holders', color: 'from-amber-600/10 to-sand-400/20' },
-    { key: 'planters', label: 'فازات وأحواض', badge: 'لمسات خضراء 🌸', desc: 'فازات مينيمال وأحواض ميني ناعمة', icon: '🏺', href: '/products?category=planters', color: 'from-emerald-500/10 to-sand-400/20' },
-    { key: 'coasters', label: 'كوسترات وقواعد', badge: 'ضيافة راقية ☕', desc: 'قواعد أكواب بتصميمات وتموجات مودرن', icon: '☕', href: '/products?category=coasters', color: 'from-stone-400/10 to-sand-300/20' },
-    { key: 'unfinished', label: 'قطع بدون فنش', badge: 'لعشاق الإبداع ✨', desc: 'اختاري القطعة وكمّليها بذوقك الخاص', icon: '🎨', href: '/products?filter=unfinished', color: 'from-brass-500/10 to-amber-500/10' },
-  ];
+  // Prioritize configured featured product IDs if any, otherwise take latest 6
+  let featuredProducts = allProducts.slice(0, 6);
+  if (settings.catalog_featured_product_ids && settings.catalog_featured_product_ids.length > 0) {
+    const featuredMap = new Map(allProducts.map(p => [p.id, p]));
+    const customFeatured = settings.catalog_featured_product_ids
+      .map(id => featuredMap.get(id))
+      .filter((p): p is typeof allProducts[0] => Boolean(p));
+    
+    if (customFeatured.length > 0) {
+      const remaining = allProducts.filter(p => !settings.catalog_featured_product_ids!.includes(p.id));
+      featuredProducts = [...customFeatured, ...remaining].slice(0, 6);
+    }
+  }
+
+  // Dynamic Visual Categories from SSoT
+  const categoriesList = ((settings.catalog_categories_config && settings.catalog_categories_config.length > 0)
+    ? settings.catalog_categories_config
+    : DEFAULT_CATEGORY_CONFIGS)
+    .filter(c => c.is_active !== false && c.homepage_visible !== false)
+    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
 
   const whatsappSpecialUrl = `https://wa.me/${(settings.whatsapp_number || '201000000000').replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
     'مرحباً Gogo Designs 🌸 أود الاستفسار عن تنفيذ طقم أو لون معين أو نقش بالاسم ✨'
@@ -64,18 +83,31 @@ export default async function HomePage() {
               {/* Natural Eyebrow */}
               <div className="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-sand-200/80 dark:bg-stone-800/80 border border-sand-300/60 dark:border-stone-700/60 text-stone-800 dark:text-brass-300 text-[11px] sm:text-xs font-bold mb-3 sm:mb-5 shadow-xs">
                 <Sparkles className="w-3.5 h-3.5 text-brass-500" />
-                <span>قطع ديكورية وهدايا مصنوعة يدوياً بمحبة ✨</span>
+                <span>{settings.hero_eyebrow || 'قطع ديكورية وهدايا مصنوعة يدوياً بمحبة ✨'}</span>
               </div>
 
               {/* Bold Real Headline */}
               <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black text-stone-900 dark:text-white tracking-tight leading-[1.25] sm:leading-[1.2] mb-3 sm:mb-5">
-                قطع مميزة لبيتك وهداياك <br className="hidden sm:inline" />
-                <span className="text-brass-600 dark:text-brass-400 font-extrabold">معمولـة بتركيز ودقة 🤍</span>
+                {settings.hero_title ? (
+                  settings.hero_title.includes('/') ? (
+                    <>
+                      {settings.hero_title.split('/')[0].trim()} <br className="hidden sm:inline" />
+                      <span className="text-brass-600 dark:text-brass-400 font-extrabold">{settings.hero_title.split('/')[1].trim()}</span>
+                    </>
+                  ) : (
+                    settings.hero_title
+                  )
+                ) : (
+                  <>
+                    قطع مميزة لبيتك وهداياك <br className="hidden sm:inline" />
+                    <span className="text-brass-600 dark:text-brass-400 font-extrabold">معمولـة بتركيز ودقة 🤍</span>
+                  </>
+                )}
               </h1>
 
               {/* Product Concept Subtitle */}
               <p className="text-xs sm:text-base text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl mb-4 sm:mb-7 font-normal">
-                تصميمات مودرن وبسيطة تليق بأي مساحة في بيتك. كل قطعة بنفذها يدويًا باهتمام فائق بالتفاصيل، بتشطيب ناعم وألوان هادية تمنح بيتك لمسة فنية دافئة.
+                {settings.hero_subtitle || 'تصميمات مودرن وبسيطة تليق بأي مساحة في بيتك. كل قطعة بنفذها يدويًا باهتمام فائق بالتفاصيل، بتشطيب ناعم وألوان هادية تمنح بيتك لمسة فنية دافئة.'}
               </p>
 
               {/* Action Buttons */}
@@ -160,53 +192,57 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 2. VISUAL CATEGORIES GRID: الأقسام الرئيسية السريعة                       */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-4 sm:space-y-6">
-        
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-          <div>
-            <span className="text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400">
-              اختاري واكتشفي معروضاتنا 🌸
-            </span>
-            <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
-              أقسام وتشكيلات المتجر
-            </h2>
-          </div>
-          <Link href="/products" className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white flex items-center gap-1">
-            <span>تصفحي كافة القطع</span>
-            <ArrowLeft className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
-          {visualCategories.map((cat) => (
-            <Link
-              key={cat.key}
-              href={cat.href}
-              className="group p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-stone-900 border border-sand-200/90 dark:border-stone-800 shadow-xs hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-2xl sm:text-3xl">{cat.icon}</span>
-                  <span className="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full bg-sand-100 dark:bg-stone-800 text-stone-700 dark:text-sand-200 border border-sand-200 dark:border-stone-700">
-                    {cat.badge}
-                  </span>
-                </div>
-                <h3 className="font-extrabold text-stone-900 dark:text-white text-xs sm:text-sm group-hover:text-brass-600 dark:group-hover:text-brass-400 transition-colors">
-                  {cat.label}
-                </h3>
-                <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 mt-1 line-clamp-2 leading-relaxed">
-                  {cat.desc}
-                </p>
-              </div>
-              <div className="pt-3 mt-3 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between text-[10px] sm:text-[11px] font-bold text-brass-700 dark:text-brass-400">
-                <span>تصفحي القسم</span>
-                <ArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
-              </div>
+      {settings.section_categories_enabled !== false && (
+        <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-4 sm:space-y-6">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+            <div>
+              <span className="text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400">
+                اختاري واكتشفي معروضاتنا 🌸
+              </span>
+              <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+                أقسام وتشكيلات المتجر
+              </h2>
+            </div>
+            <Link href="/products" className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white flex items-center gap-1">
+              <span>تصفحي كافة القطع</span>
+              <ArrowLeft className="w-3.5 h-3.5" />
             </Link>
-          ))}
-        </div>
+          </div>
 
-      </section>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
+            {categoriesList.map((cat) => (
+              <Link
+                key={cat.key}
+                href={`/products?category=${cat.key}`}
+                className="group p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl bg-white dark:bg-stone-900 border border-sand-200/90 dark:border-stone-800 shadow-xs hover:shadow-xl hover:shadow-stone-900/5 dark:hover:shadow-stone-950/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-2xl sm:text-3xl">{cat.icon || '✨'}</span>
+                    {cat.badge && (
+                      <span className="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full bg-sand-100 dark:bg-stone-800 text-stone-700 dark:text-sand-200 border border-sand-200 dark:border-stone-700">
+                        {cat.badge}
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-extrabold text-stone-900 dark:text-white text-xs sm:text-sm group-hover:text-brass-600 dark:group-hover:text-brass-400 transition-colors">
+                    {cat.label}
+                  </h3>
+                  <p className="text-[10px] sm:text-xs text-stone-500 dark:text-stone-400 mt-1 line-clamp-2 leading-relaxed">
+                    {cat.description}
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-stone-100 dark:border-stone-800/80 flex items-center justify-between text-[10px] sm:text-[11px] font-bold text-brass-700 dark:text-brass-400">
+                  <span>تصفحي القسم</span>
+                  <ArrowLeft className="w-3 h-3 transition-transform group-hover:-translate-x-1" />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+        </section>
+      )}
 
       {/* ========================================================================= */}
       {/* 2.5 PROMO BANNER (من الإعدادات والعروض إن وجدت)                            */}
@@ -244,49 +280,51 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 3. CURATED SHOWCASE: الأكثر طلباً والقطع المميزة                           */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-4 sm:space-y-6">
-        
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
-          <div>
-            <div className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400 mb-1">
-              <span>الأكثر طلباً واختياراً 🤍</span>
+      {settings.section_featured_enabled !== false && (
+        <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-4 sm:space-y-6">
+          
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400 mb-1">
+                <span>الأكثر طلباً واختياراً 🤍</span>
+              </div>
+              <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+                القطع الأكثر تميزاً وإعجاباً
+              </h2>
+              <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5 sm:mt-1">
+                كل قطعة معمولة بتركيز ودقة وتشطيب ناعم. اختاري قطعة واحدة أو اجمعي طقم حسب رغبتك.
+              </p>
             </div>
-            <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
-              القطع الأكثر تميزاً وإعجاباً
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-500 dark:text-stone-400 mt-0.5 sm:mt-1">
-              كل قطعة معمولة بتركيز ودقة وتشطيب ناعم. اختاري قطعة واحدة أو اجمعي طقم حسب رغبتك.
-            </p>
+
+            <Link href="/products" className="hidden sm:inline-flex">
+              <Button variant="outline" size="sm" rightIcon={<ArrowLeft className="w-3.5 h-3.5" />}>
+                عرض كافة المعروضات
+              </Button>
+            </Link>
           </div>
 
-          <Link href="/products" className="hidden sm:inline-flex">
-            <Button variant="outline" size="sm" rightIcon={<ArrowLeft className="w-3.5 h-3.5" />}>
-              عرض كافة المعروضات
-            </Button>
-          </Link>
-        </div>
+          {/* Products Grid: Exact 2-col on mobile, gap-2.5 sm:gap-4 md:gap-6 */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4 md:gap-6">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
 
-        {/* Products Grid: Exact 2-col on mobile, gap-2.5 sm:gap-4 md:gap-6 */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4 md:gap-6">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+          <div className="text-center sm:hidden pt-1">
+            <Link href="/products" className="w-full inline-block">
+              <Button variant="primary" size="md" className="w-full h-11 text-xs font-bold shadow-sm">
+                عرض جميع القطع في المعرض
+              </Button>
+            </Link>
+          </div>
 
-        <div className="text-center sm:hidden pt-1">
-          <Link href="/products" className="w-full inline-block">
-            <Button variant="primary" size="md" className="w-full h-11 text-xs font-bold shadow-sm">
-              عرض جميع القطع في المعرض
-            </Button>
-          </Link>
-        </div>
-
-      </section>
+        </section>
+      )}
 
       {/* ========================================================================= */}
-      {/* 4. RAMADAN COLLECTION (ديناميكي: يظهر فقط إذا وجدت قطع مسجلة لرمضان)       */}
+      {/* 4. SEASONAL COLLECTION (ديناميكي: يظهر فقط إذا وجدت قطع مسجلة للمجموعة)    */}
       {/* ========================================================================= */}
-      {ramadanProducts.length > 0 && (
+      {settings.section_seasonal_enabled !== false && seasonalProducts.length > 0 && activeSeasonalCollection && (
         <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
           <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-amber-500/10 via-sand-100/60 to-sand-200/40 dark:from-stone-900 dark:via-stone-900 dark:to-stone-800 border border-amber-500/30 dark:border-stone-800 space-y-4 sm:space-y-6">
             
@@ -294,21 +332,21 @@ export default async function HomePage() {
               <div className="space-y-1">
                 <span className="inline-flex items-center gap-1 text-[11px] font-bold text-amber-700 dark:text-brass-400">
                   <Moon className="w-3.5 h-3.5" />
-                  <span>الموسم والبركة 🌙</span>
+                  <span>{activeSeasonalCollection.badge || 'الموسم والبركة 🌙'}</span>
                 </span>
                 <h3 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white">
-                  ركن رمضان والأجواء الدافئة
+                  {activeSeasonalCollection.label || 'ركن رمضان والأجواء الدافئة'}
                 </h3>
               </div>
-              <Link href="/products?collection=ramadan">
+              <Link href={`/products?collection=${activeSeasonalCollection.key}`}>
                 <Button variant="outline" size="sm" rightIcon={<ArrowLeft className="w-3.5 h-3.5" />}>
-                  عرض تشكيلة رمضان
+                  عرض تشكيلة {activeSeasonalCollection.label}
                 </Button>
               </Link>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4">
-              {ramadanProducts.map((p) => (
+              {seasonalProducts.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
             </div>
@@ -320,39 +358,41 @@ export default async function HomePage() {
       {/* ========================================================================= */}
       {/* 5. CUSTOM REQUEST & INQUIRY: لو حابة لون أو شكل أو نقش خاص               */}
       {/* ========================================================================= */}
-      <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
-        <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-sand-100/90 dark:bg-stone-900 border border-sand-300/80 dark:border-stone-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 shadow-xs">
-          
-          <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-[11px] sm:text-xs font-bold">
-              <span>طلب خاص وتنسيق ألوان 🙋‍♀️💜</span>
+      {settings.section_custom_request_enabled !== false && (
+        <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full">
+          <div className="p-4 sm:p-8 rounded-2xl sm:rounded-3xl bg-sand-100/90 dark:bg-stone-900 border border-sand-300/80 dark:border-stone-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 shadow-xs">
+            
+            <div className="space-y-1.5 sm:space-y-2 max-w-2xl">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-sand-200 dark:bg-stone-800 text-stone-800 dark:text-brass-400 text-[11px] sm:text-xs font-bold">
+                <span>طلب خاص وتنسيق ألوان 🙋‍♀️💜</span>
+              </div>
+              <h3 className="text-lg sm:text-2xl font-black text-stone-900 dark:text-white tracking-tight">
+                ومتاح تنفيذ أي ألوان، أو نقش عبارة إهداء مخصصة بالطلب 🌸
+              </h3>
+              <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                كل قطعة معمولة بتركيز ودقة وبأعلي جودة وتشطيب هادي. لو أردتي لوناً معيناً، طقماً مخصصاً، أو نقش أسماء خاصة للهدايا وكتب الكتاب، تواصلي معنا وسننفذها لكِ بكل سرور ✨
+              </p>
             </div>
-            <h3 className="text-lg sm:text-2xl font-black text-stone-900 dark:text-white tracking-tight">
-              ومتاح تنفيذ أي ألوان، أو نقش عبارة إهداء مخصصة بالطلب 🌸
-            </h3>
-            <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-              كل قطعة معمولة بتركيز ودقة وبأعلي جودة وتشطيب هادي. لو أردتي لوناً معيناً، طقماً مخصصاً، أو نقش أسماء خاصة للهدايا وكتب الكتاب، تواصلي معنا وسننفذها لكِ بكل سرور ✨
-            </p>
-          </div>
 
-          <a
-            href={whatsappSpecialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 w-full md:w-auto"
-          >
-            <Button
-              variant="primary"
-              size="lg"
-              className="w-full md:w-auto shadow-sm h-11 sm:h-12 text-xs sm:text-sm font-bold"
-              leftIcon={<MessageCircle className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
+            <a
+              href={whatsappSpecialUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 w-full md:w-auto"
             >
-              تواصلي معنا عبر واتساب 💬
-            </Button>
-          </a>
+              <Button
+                variant="primary"
+                size="lg"
+                className="w-full md:w-auto shadow-sm h-11 sm:h-12 text-xs sm:text-sm font-bold"
+                leftIcon={<MessageCircle className="w-4 h-4 text-brass-400 dark:text-stone-950" />}
+              >
+                تواصلي معنا عبر واتساب 💬
+              </Button>
+            </a>
 
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
     </div>
   );

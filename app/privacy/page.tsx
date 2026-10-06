@@ -1,6 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ShieldCheck, Lock, Eye } from 'lucide-react';
+import { getPublicSettings } from '@/lib/supabase';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'سياسة الخصوصية وأمان البيانات | Gogo Designs',
@@ -10,7 +13,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PrivacyPage() {
+export default async function PrivacyPage() {
+  const settings = await getPublicSettings();
+
   return (
     <div className="max-w-4xl mx-auto px-3.5 sm:px-6 py-6 sm:py-12 md:py-16 space-y-8">
       
@@ -21,10 +26,10 @@ export default function PrivacyPage() {
           <span>خصوصية وأمان بياناتك</span>
         </div>
         <h1 className="text-2xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight">
-          سياسة الخصوصية
+          {settings.privacy_title || 'سياسة الخصوصية'}
         </h1>
         <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300">
-          نلتزم بحماية خصوصيتك وضمان سرية كافة البيانات التي تشاركينها معنا أثناء إتمام طلبك.
+          {settings.privacy_subtitle || 'نلتزم بحماية خصوصيتك وضمان سرية كافة البيانات التي تشاركينها معنا أثناء إتمام طلبك.'}
         </p>
       </div>
 
@@ -36,7 +41,7 @@ export default function PrivacyPage() {
             <span>1. البيانات التي نجمعها</span>
           </h2>
           <p>
-            نجمع فقط البيانات الأساسية اللازمة لتجهيز وشحن طلبك، وتشمل: الاسم، رقم الهاتف للتواصل عبر واتساب، عنوان الشحن بالتفصيل، وأي ملاحظات خاصة بتنسيق الألوان أو نقش الأسماء.
+            {settings.privacy_collected_data || 'نجمع فقط البيانات الأساسية اللازمة لتجهيز وشحن طلبك، وتشمل: الاسم، رقم الهاتف للتواصل عبر واتساب، عنوان الشحن بالتفصيل، وأي ملاحظات خاصة بتنسيق الألوان أو نقش الأسماء.'}
           </p>
         </section>
 
@@ -46,13 +51,8 @@ export default function PrivacyPage() {
             <span>2. كيف نستخدم بياناتك</span>
           </h2>
           <p>
-            تُستخدم بياناتك حصرياً للأغراض التالية:
+            {settings.privacy_usage || 'تُستخدم بياناتك حصرياً لتنفيذ وتجهيز طلبك، وتزويد مندوب شركة الشحن بالعنوان ورقم الهاتف للتسليم، وإرسال تحديثات تتبع الطلب وتأكيد استلام العربون عبر واتساب.'}
           </p>
-          <ul className="list-disc pr-4 space-y-1 text-xs text-stone-600 dark:text-stone-300">
-            <li>تنفيذ وتجهيز القطع وفقاً لتفضيلاتك.</li>
-            <li>تزويد مندوب شركة الشحن بالعنوان ورقم الهاتف للتسليم.</li>
-            <li>إرسال تحديثات تتبع الطلب وتأكيد استلام العربون عبر واتساب.</li>
-          </ul>
         </section>
 
         <section className="space-y-2 pt-4 border-t border-stone-100 dark:border-stone-800">
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
             <span>3. عدم مشاركة البيانات</span>
           </h2>
           <p>
-            نتعهد بعدم بيع أو تأجير أو مشاركة أي من بياناتك الشخصية مع أي أطراف ثالثة لأغراض دعائية أو إعلانية. بياناتك تبقى في سرية تامة.
+            {settings.privacy_third_party || 'نتعهد بعدم بيع أو تأجير أو مشاركة أي من بياناتك الشخصية مع أي أطراف ثالثة لأغراض دعائية أو إعلانية. بياناتك تبقى في سرية تامة.'}
           </p>
         </section>
 
@@ -71,7 +71,7 @@ export default function PrivacyPage() {
             <span>4. صور إيصالات التحويل</span>
           </h2>
           <p>
-            يتم تخزين صور إيصالات التحويل المرفوعة عبر خوادم آمنة ومشفرة، وتُستخدم فقط من قِبل إدارة المتجر لمطابقة مبالغ العربون وتأكيد بدء الصب.
+            {settings.privacy_receipts_security || 'يتم تخزين صور إيصالات التحويل المرفوعة عبر خوادم آمنة ومشفرة، وتُستخدم فقط من قِبل إدارة المتجر لمطابقة مبالغ العربون وتأكيد بدء الصب والتنفيذ.'}
           </p>
         </section>
 

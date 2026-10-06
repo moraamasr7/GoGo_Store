@@ -2,7 +2,10 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Sparkles, Heart, CheckCircle2, ShieldCheck, ArrowLeft, Palette, Award } from 'lucide-react';
+import { getPublicSettings } from '@/lib/supabase';
 import { Button } from '@/components/ui/Button';
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'قصتنا وعالمنا الحرفي | Gogo Designs',
@@ -12,7 +15,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const settings = await getPublicSettings();
+
   return (
     <div className="max-w-4xl mx-auto px-3.5 sm:px-6 py-6 sm:py-12 md:py-16 space-y-8 sm:space-y-12">
       
@@ -20,14 +25,27 @@ export default function AboutPage() {
       <div className="text-center space-y-3 sm:space-y-4 max-w-2xl mx-auto">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sand-200/80 dark:bg-stone-800 text-brass-700 dark:text-brass-300 text-xs font-bold shadow-xs">
           <Sparkles className="w-3.5 h-3.5 text-brass-500" />
-          <span>حرفية يدوية مصرية معاصرة</span>
+          <span>{settings.about_eyebrow || 'حرفية يدوية مصرية معاصرة'}</span>
         </div>
         <h1 className="text-2xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight leading-tight">
-          شغف بالجمال، وصناعة يدوية <br className="hidden sm:inline" />
-          <span className="text-brass-600 dark:text-brass-400">معمولة بتركيز ودقة 🤍</span>
+          {settings.about_title ? (
+            settings.about_title.includes('/') ? (
+              <>
+                {settings.about_title.split('/')[0].trim()} <br className="hidden sm:inline" />
+                <span className="text-brass-600 dark:text-brass-400">{settings.about_title.split('/')[1].trim()}</span>
+              </>
+            ) : (
+              settings.about_title
+            )
+          ) : (
+            <>
+              شغف بالجمال، وصناعة يدوية <br className="hidden sm:inline" />
+              <span className="text-brass-600 dark:text-brass-400">معمولة بتركيز ودقة 🤍</span>
+            </>
+          )}
         </h1>
         <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-          في <strong>Gogo Concrete Designs</strong>، نؤمن بأن تفاصيل المنزل الصغيرة هي التي تصنع روحه ودفئه. بدأنا من فكرة بسيطة: تحويل الخامات الديكورية إلى قطع فنية ناعمة، تدوم طويلاً وتضفي لمسة من الرقي على كل ركن.
+          {settings.about_story || 'في Gogo Concrete Designs، نؤمن بأن تفاصيل المنزل الصغيرة هي التي تصنع روحه ودفئه. بدأنا من فكرة بسيطة: تحويل الخامات الديكورية إلى قطع فنية ناعمة، تدوم طويلاً وتضفي لمسة من الرقي على كل ركن.'}
         </p>
       </div>
 
@@ -67,11 +85,11 @@ export default function AboutPage() {
       {/* Craftsmanship Details */}
       <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-sand-100/90 dark:bg-stone-850 border border-sand-300/80 dark:border-stone-700 space-y-4">
         <h2 className="text-base sm:text-xl font-black text-stone-900 dark:text-white flex items-center gap-2">
-          <span>فلسفة التصميم والتشطيب</span>
+          <span>{settings.about_craft_title || 'فلسفة التصميم والتشطيب'}</span>
         </h2>
         <div className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 space-y-3 leading-relaxed">
           <p>
-            تتميز منتجاتنا بالتوازن بين البساطة والعملية؛ سواء كانت صينية تقديم ديكورية، مبخرة عصرية، حامل شموع دافئ، أو طقم هدايا متناسق. كل قطعة تمر بعدة مراحل:
+            {settings.about_craft_text || 'تتميز منتجاتنا بالتوازن بين البساطة والعملية؛ سواء كانت صينية تقديم ديكورية، مبخرة عصرية، حامل شموع دافئ، أو طقم هدايا متناسق. كل قطعة تمر بعدة مراحل من الصب المتقن والصنفرة الناعمة وطبقات الحماية.'}
           </p>
           <ul className="space-y-2 pr-4 text-xs list-disc text-stone-700 dark:text-stone-300 font-medium">
             <li>الخلط والصب الدقيق بنسب محكمة لضمان المتانة العالية.</li>

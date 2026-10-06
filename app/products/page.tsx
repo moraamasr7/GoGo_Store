@@ -1,7 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import { Metadata } from 'next';
-import { getActiveProducts } from '@/lib/supabase';
+import { getActiveProducts, getPublicSettings } from '@/lib/supabase';
+import { DEFAULT_CATEGORY_CONFIGS, DEFAULT_COLLECTION_CONFIGS } from '@/types/database';
 import ProductCard from '@/components/products/ProductCard';
 import { Sparkles, Gift, SlidersHorizontal, MessageCircle, X } from 'lucide-react';
 import { getCategoryLabel } from '@/lib/utils';
@@ -71,24 +72,43 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   const collectionParam = searchParams?.collection;
   const isUnfinished = searchParams?.filter === 'unfinished';
 
-  // Fetch products with multi-filter support
-  const products = await getActiveProducts({
-    category: categoryParam && categoryParam !== 'all' ? categoryParam : undefined,
-    collection: collectionParam || undefined,
-    is_unfinished: isUnfinished ? true : undefined,
-  });
+  // Fetch settings & products concurrently
+  const [settings, products] = await Promise.all([
+    getPublicSettings(),
+    getActiveProducts({
+      category: categoryParam && categoryParam !== 'all' ? categoryParam : undefined,
+      collection: collectionParam || undefined,
+      is_unfinished: isUnfinished ? true : undefined,
+    }),
+  ]);
+
+  const categories = ((settings.catalog_categories_config && settings.catalog_categories_config.length > 0)
+    ? settings.catalog_categories_config
+    : DEFAULT_CATEGORY_CONFIGS)
+    .filter(c => c.is_active !== false)
+    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
+
+  const collections = ((settings.catalog_collections_config && settings.catalog_collections_config.length > 0)
+    ? settings.catalog_collections_config
+    : DEFAULT_COLLECTION_CONFIGS)
+    .filter(c => c.is_active !== false)
+    .sort((a, b) => (a.display_order ?? 0) - (b.display_order ?? 0));
 
   const filterTabs = [
     { id: 'all', label: 'جميع القطع', href: '/products', active: !categoryParam && !collectionParam && !isUnfinished },
-    { id: 'gift_sets', label: '🎁 أطقم هدايا', href: '/products?category=gift_sets', active: categoryParam === 'gift_sets' },
-    { id: 'ready_sets', label: '🤎 أطقم ديكور', href: '/products?category=ready_sets', active: categoryParam === 'ready_sets' },
-    { id: 'ramadan', label: '🌙 تشكيلة رمضان', href: '/products?collection=ramadan', active: collectionParam === 'ramadan' },
+    ...categories.map(cat => ({
+      id: cat.key,
+      label: `${cat.icon ? `${cat.icon} ` : ''}${cat.label}`,
+      href: `/products?category=${cat.key}`,
+      active: categoryParam === cat.key,
+    })),
+    ...collections.map(col => ({
+      id: col.key,
+      label: `${col.icon ? `${col.icon} ` : ''}${col.label}`,
+      href: `/products?collection=${col.key}`,
+      active: collectionParam === col.key,
+    })),
     { id: 'unfinished', label: '🎨 قطع بدون فنش (للتلوين)', href: '/products?filter=unfinished', active: isUnfinished },
-    { id: 'trays', label: 'صواني ديكورية', href: '/products?category=trays', active: categoryParam === 'trays' },
-    { id: 'candle_holders', label: 'شمعدانات ومباخر', href: '/products?category=candle_holders', active: categoryParam === 'candle_holders' },
-    { id: 'decor', label: 'تحف وفازات', href: '/products?category=decor', active: categoryParam === 'decor' },
-    { id: 'planters', label: 'أحواض وزريعة', href: '/products?category=planters', active: categoryParam === 'planters' },
-    { id: 'coasters', label: 'قواعد أكواب', href: '/products?category=coasters', active: categoryParam === 'coasters' },
   ];
 
   // Dynamic header copy based on filter
@@ -96,22 +116,21 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
   let pageTitle = 'القطع والتصميمات المتاحة للتنفيذ 🌸';
   let pageDescription = 'تحف وديكورات منزلية يدوية بأشكال عصرية وألوان متناسقة تناسب جميع أركان منزلك. يمكنك طلب القطع منفردة أو تكوين طقمك الخاص.';
 
+  const matchedCat = categories.find(c => c.key === categoryParam);
+  const matchedCol = collections.find(c => c.key === collectionParam);
+
   if (isUnfinished) {
     pageBadge = '🎨 ورشة وإبداع';
     pageTitle = 'قطع بدون فنش (للتلوين والإبداع) 🎨';
     pageDescription = 'قطع ديكورية مصبوبة يدوياً ومجهزة بنعومة بدون ألوان أو لمعة، مخصصة لكِ لتبدعي بتلوينها وتنسيقها بلمستك الخاصة.';
-  } else if (collectionParam === 'ramadan') {
-    pageBadge = '🌙 ديكورات وإضاءات رمضانية';
-    pageTitle = 'تشكيلة رمضان المبارك 🌙';
-    pageDescription = 'قطع ديكورية ومباخر وأطقم ضيافة صُممت خصيصاً لتضفي لمسة روحانية راقية على منزلك في الشهر الفضيل.';
-  } else if (categoryParam === 'gift_sets') {
-    pageBadge = '🎁 هدايا وتوزيعات فاخرة';
-    pageTitle = 'أطقم الهدايا الراقية 🎁';
-    pageDescription = 'مجموعات ديكورية متناسقة ومغلفة بأناقة، جاهزة لتكون أرقى هدية للمناسبات السعيدة والأحباب.';
-  } else if (categoryParam === 'ready_sets') {
-    pageBadge = '🤎 ديكورات وتنسيقات جاهزة';
-    pageTitle = 'أطقم ديكورات متناسقة 🤎';
-    pageDescription = 'تنسيقات متكاملة من الصواني والمباخر والشمعدانات لتجميل طاولاتك وزوايا منزلك بتناغم مثالي.';
+  } else if (matchedCol) {
+    pageBadge = matchedCol.badge || `✨ ${matchedCol.label}`;
+    pageTitle = `${matchedCol.label} ${matchedCol.icon || ''}`;
+    pageDescription = matchedCol.description || 'تشكيلة مميزة ومختارة بعناية للمناسبات والأوقات السعيدة.';
+  } else if (matchedCat) {
+    pageBadge = matchedCat.badge || `✨ ${matchedCat.label}`;
+    pageTitle = `${matchedCat.label} ${matchedCat.icon || ''}`;
+    pageDescription = matchedCat.description || 'مجموعات ديكورية متناسقة ومصبوبة يدوياً بتشطيب ناعم وأنيق.';
   }
 
   const hasActiveFilter = Boolean(categoryParam || collectionParam || isUnfinished);

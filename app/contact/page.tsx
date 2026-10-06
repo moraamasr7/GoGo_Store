@@ -5,6 +5,8 @@ import { getPublicSettings } from '@/lib/supabase';
 import { generateWhatsAppInquiryUrl } from '@/lib/whatsapp';
 import { Button } from '@/components/ui/Button';
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'تواصل معنا واستفسر عن طلبك | Gogo Designs',
   description: 'تواصل مع فريق Gogo Designs للاستفسار عن المنتجات، تنسيق الألوان، تنفيذ الطلبات الخاصة ونقش الأسماء عبر واتساب.',
@@ -24,13 +26,13 @@ export default async function ContactPage() {
       <div className="text-center space-y-2.5 max-w-xl mx-auto">
         <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sand-200/80 dark:bg-stone-800 text-brass-700 dark:text-brass-300 text-xs font-bold shadow-xs">
           <MessageCircle className="w-3.5 h-3.5 text-brass-500" />
-          <span>خدمة العملاء والطلبات الخاصة</span>
+          <span>{settings.contact_eyebrow || 'خدمة العملاء والطلبات الخاصة'}</span>
         </div>
         <h1 className="text-2xl sm:text-4xl font-black text-stone-900 dark:text-white tracking-tight">
-          يسعدنا تواصلك واستقبال استفساراتك 🤍
+          {settings.contact_title || 'يسعدنا تواصلك واستقبال استفساراتك 🤍'}
         </h1>
         <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-          سواء كان لديكِ استفسار عن قطعة معينة، أو رغبة في تنسيق طقم بألوان مخصصة أو إضافة نقش إهداء بالاسم، نحن دائماً هنا لمساعدتك.
+          {settings.contact_subtitle || 'سواء كان لديكِ استفسار عن قطعة معينة، أو رغبة في تنسيق طقم بألوان مخصصة أو إضافة نقش إهداء بالاسم، نحن دائماً هنا لمساعدتك.'}
         </p>
       </div>
 
@@ -48,7 +50,7 @@ export default async function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-sm sm:text-base font-black text-stone-900 dark:text-white">محادثة واتساب المباشرة</h3>
-                  <p className="text-[11px] text-stone-500 dark:text-stone-400">الرد الأسرع لتأكيد وتنسيق الطلبات</p>
+                  <p className="text-[11px] text-stone-500 dark:text-stone-400">الرد الأسرع لتأكيد وتنسيق الطلبات ({settings.whatsapp_number})</p>
                 </div>
               </div>
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 font-bold">
@@ -80,7 +82,7 @@ export default async function ContactPage() {
                 <span>أوقات العمل واستقبال الطلبات</span>
               </div>
               <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-normal">
-                يومياً من الساعة 10:00 صباحاً حتى 11:00 مساءً (الطلبات عبر الموقع متاحة 24/7).
+                {settings.contact_hours || 'يومياً من الساعة 10:00 صباحاً حتى 11:00 مساءً (الطلبات عبر الموقع متاحة 24/7).'}
               </p>
             </div>
 
@@ -90,7 +92,7 @@ export default async function ContactPage() {
                 <span>نطاق الشحن والتوصيل</span>
               </div>
               <p className="text-[11px] text-stone-500 dark:text-stone-400 leading-normal">
-                شحن سريع ومغلف بعناية فائقة ضد الكسر لكافة محافظات جمهورية مصر العربية.
+                {settings.contact_coverage || 'شحن سريع ومغلف بعناية فائقة ضد الكسر لكافة محافظات جمهورية مصر العربية.'}
               </p>
             </div>
           </div>
@@ -110,7 +112,7 @@ export default async function ContactPage() {
             <li>تواصلي معنا عبر واتساب بصورة أو فكرة القطعة.</li>
             <li>نحدد معكِ درجات الألوان والتفاصيل المطلوبة.</li>
             <li>نؤكد التكلفة وموعد التنفيذ (عادة 2-4 أيام عمل).</li>
-            <li>يتم تحويل العربون والبدء الفوري في صب وتجهيز طلبك ✨</li>
+            <li>يتم تحويل العربون ({settings.deposit_percentage || 50}%) والبدء الفوري في صب وتجهيز طلبك ✨</li>
           </ol>
         </div>
 

@@ -18,62 +18,78 @@ const cairo = Cairo({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gogodesigns.com';
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: {
-    default: "Gogo Designs | تحف وديكورات منزلية مصنوعة يدوياً بتركيز ودقة 🤍",
-    template: "%s | Gogo Designs",
-  },
-  description: "متجر Gogo Designs للتحف والديكورات المنزلية وأطقم الهدايا المصبوبة يدوياً. صواني تقديم، مباخر، شمعدانات، كوسترات، وفازات بتشطيب ناعم وألوان هادئة ونقش مخصص بالاسم.",
-  keywords: [
-    "صواني ديكورية",
-    "كوسترات",
-    "شمعدانات",
-    "مباخر",
-    "فازات",
-    "أطقم هدايا",
-    "ديكور منزلي",
-    "قطع مخصصة",
-    "أسماء مخصصة",
-    "هاند ميد",
-    "تحف منزلية",
-    "Gogo Designs",
-  ],
-  authors: [{ name: "Gogo Designs" }],
-  creator: "Gogo Designs",
-  publisher: "Gogo Designs",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  alternates: {
-    canonical: "/",
-  },
-  openGraph: {
-    title: "Gogo Designs | تحف وديكورات منزلية مصنوعة يدوياً بتركيز ودقة 🤍",
-    description: "قطع ديكورية وأطقم هدايا مصبوبة يدوياً بتشطيب ناعم وألوان هادئة ونقش أسماء مخصص لبيتك ومناسباتك.",
-    url: siteUrl,
-    siteName: "Gogo Designs",
-    locale: "ar_EG",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Gogo Designs | تحف وديكورات منزلية هاند ميد",
-    description: "قطع ديكورية وأطقم هدايا مصبوبة يدوياً بتشطيب ناعم وألوان هادئة.",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getPublicSettings();
+  const storeTitle = settings.seo_meta_title || `${settings.store_name || 'Gogo Designs'} | تحف وديكورات منزلية مصنوعة يدوياً بتركيز ودقة 🤍`;
+  const storeDesc = settings.seo_meta_description || 'متجر Gogo Designs للتحف والديكورات المنزلية وأطقم الهدايا المصبوبة يدوياً. صواني تقديم، مباخر، شمعدانات، كوسترات، وفازات بتشطيب ناعم وألوان هادئة ونقش مخصص بالاسم.';
+  const ogImage = settings.seo_og_image_url || settings.hero_banner_url || `${siteUrl}/og-image.jpg`;
+
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: storeTitle,
+      template: `%s | ${settings.store_name || 'Gogo Designs'}`,
+    },
+    description: storeDesc,
+    keywords: [
+      "صواني ديكورية",
+      "كوسترات",
+      "شمعدانات",
+      "مباخر",
+      "فازات",
+      "أطقم هدايا",
+      "ديكور منزلي",
+      "قطع مخصصة",
+      "أسماء مخصصة",
+      "هاند ميد",
+      "تحف منزلية",
+      settings.store_name || "Gogo Designs",
+    ],
+    authors: [{ name: settings.store_name || "Gogo Designs" }],
+    creator: settings.store_name || "Gogo Designs",
+    publisher: settings.store_name || "Gogo Designs",
+    formatDetection: {
+      email: false,
+      address: false,
+      telephone: false,
+    },
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      title: storeTitle,
+      description: storeDesc,
+      url: siteUrl,
+      siteName: settings.store_name || "Gogo Designs",
+      locale: "ar_EG",
+      type: "website",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: storeTitle,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: storeTitle,
+      description: storeDesc,
+      images: [ogImage],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-};
+  };
+}
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;

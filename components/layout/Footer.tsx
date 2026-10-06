@@ -42,7 +42,7 @@ export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
             </div>
             
             <p className="text-stone-400 text-xs leading-relaxed max-w-sm">
-              براند مصري لديكورات وتحف منزلية مصبوبة يدوياً بتشطيب ناعم وألوان هادئة تضيف لمسة فنية دافئة وأنيقة لكل زاوية في منزلك.
+              {settings.store_subtitle || 'براند مصري لديكورات وتحف منزلية مصبوبة يدوياً بتشطيب ناعم وألوان هادئة تضيف لمسة فنية دافئة وأنيقة لكل زاوية في منزلك.'}
             </p>
 
             <div className="flex items-center gap-2 text-xs text-brass-400 font-bold pt-1">
