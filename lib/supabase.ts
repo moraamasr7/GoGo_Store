@@ -60,10 +60,17 @@ export async function getActiveProducts(params?: string | ProductQueryFilters): 
 }
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
+  let decodedSlug = slug;
+  try {
+    decodedSlug = decodeURIComponent(slug);
+  } catch {
+    decodedSlug = slug;
+  }
+
   const { data, error } = await supabase
     .from('products')
     .select('*')
-    .eq('slug', slug)
+    .eq('slug', decodedSlug)
     .eq('is_active', true)
     .single();
 
