@@ -35,6 +35,15 @@ export default async function Footer({ logoUrl, brandMark, storeName }: FooterPr
                     className="object-cover"
                   />
                 </div>
+              ) : activeBrandMark && (activeBrandMark.startsWith('http://') || activeBrandMark.startsWith('https://') || activeBrandMark.startsWith('/')) ? (
+                <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow-xs border border-stone-700 bg-stone-800">
+                  <Image
+                    src={activeBrandMark}
+                    alt={activeStoreName}
+                    fill
+                    className="object-contain p-0.5"
+                  />
+                </div>
               ) : (
                 <div className="w-9 h-9 rounded-xl bg-brass-500 flex items-center justify-center text-stone-950 font-black text-base shadow-xs">
                   {activeBrandMark}

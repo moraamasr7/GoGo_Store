@@ -99,6 +99,15 @@ export default function Header({ logoUrl, brandMark, storeName, whatsappNumber =
                     className="object-cover"
                   />
                 </div>
+              ) : brandMark && (brandMark.startsWith('http://') || brandMark.startsWith('https://') || brandMark.startsWith('/')) ? (
+                <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden shadow-xs border border-stone-200 dark:border-stone-700 bg-stone-100 dark:bg-stone-800">
+                  <Image
+                    src={brandMark}
+                    alt={storeName || 'GOGO CONCRETE'}
+                    fill
+                    className="object-contain p-0.5"
+                  />
+                </div>
               ) : (
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-stone-900 dark:bg-stone-800 flex items-center justify-center text-sand-50 shadow-xs border border-stone-700/40">
                   <span className="font-extrabold text-sm sm:text-base tracking-wider text-brass-400">{brandMark || 'G'}</span>
