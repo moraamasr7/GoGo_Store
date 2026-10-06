@@ -3,18 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  ShoppingBag, 
-  Search, 
-  Menu, 
-  X, 
-  Home, 
-  Sparkles, 
-  Gift, 
-  Layers, 
-  Flame, 
-  Palette, 
-  Clock, 
+import {
+  ShoppingBag,
+  Search,
+  Menu,
+  X,
+  Home,
+  Sparkles,
+  Gift,
+  Layers,
+  Flame,
+  Palette,
+  Clock,
   MessageCircle,
   ArrowLeft
 } from 'lucide-react';
@@ -28,7 +28,7 @@ interface HeaderProps {
   whatsappNumber?: string;
 }
 
-export default function Header({ logoUrl, storeName, whatsappNumber = '201012345678' }: HeaderProps) {
+export default function Header({ logoUrl, storeName, whatsappNumber = '201150014792' }: HeaderProps) {
   const pathname = usePathname();
   const { itemCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -73,7 +73,7 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201012345
     <>
       <header className="sticky top-0 z-40 bg-sand-50/90 dark:bg-stone-950/90 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800/90 transition-colors duration-200">
         <div className="max-w-6xl mx-auto px-3.5 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
-          
+
           {/* Right Section: Mobile Menu Trigger + Brand Logo */}
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Mobile Hamburger Button */}
@@ -121,11 +121,10 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201012345
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors py-1 hover:text-stone-950 dark:hover:text-white relative ${
-                  link.active
+                className={`transition-colors py-1 hover:text-stone-950 dark:hover:text-white relative ${link.active
                     ? 'text-stone-950 dark:text-white font-bold'
                     : ''
-                }`}
+                  }`}
               >
                 <span>{link.label}</span>
                 {link.active && (
@@ -175,7 +174,7 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201012345
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 md:hidden flex">
           {/* Backdrop */}
-          <div 
+          <div
             className="fixed inset-0 bg-stone-950/60 backdrop-blur-xs transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
@@ -183,7 +182,7 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201012345
 
           {/* Slide-out Drawer from Right */}
           <div className="relative mr-auto w-full max-w-xs bg-white dark:bg-stone-900 h-full shadow-2xl flex flex-col justify-between z-10 overflow-y-auto border-l border-stone-200 dark:border-stone-800 animate-in slide-in-from-right duration-250">
-            
+
             {/* Drawer Header */}
             <div className="p-4 border-b border-stone-100 dark:border-stone-800 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -206,7 +205,7 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201012345
 
             {/* Navigation Items */}
             <div className="p-4 space-y-6 flex-1">
-              
+
               {/* Primary Links */}
               <div className="space-y-1">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-stone-400 dark:text-stone-500 px-3 block mb-2">
@@ -219,11 +218,10 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201012345
                       key={link.href}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-colors min-h-[44px] ${
-                        link.active
+                      className={`flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-colors min-h-[44px] ${link.active
                           ? 'bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 shadow-xs'
                           : 'text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-3">
                         <Icon className={`w-4 h-4 ${link.active ? 'text-brass-400 dark:text-stone-950' : 'text-stone-400 dark:text-stone-500'}`} />

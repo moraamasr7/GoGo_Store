@@ -77,8 +77,8 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
   const defaultSettings: StorePublicSettings = {
     store_name: 'Gogo Designs',
     store_subtitle: 'براند مصري لديكورات وتحف منزلية مصبوبة يدوياً بتشطيب ناعم وألوان هادئة تضيف لمسة فنية دافئة وأنيقة لكل زاوية في منزلك.',
-    whatsapp_number: '201012345678',
-    vodafone_cash: '01012345678',
+    whatsapp_number: '201150014792',
+    vodafone_cash: '01150014792',
     instapay: 'gogo.designs@instapay',
     deposit_percentage: 50,
     currency: 'ج.م',
@@ -169,7 +169,7 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
           if (Array.isArray(parsed) && parsed.length > 0) {
             result.catalog_categories_config = parsed;
           }
-        } catch {}
+        } catch { }
       }
       if (item.key === 'catalog_collections_config' && item.value) {
         try {
@@ -177,7 +177,7 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
           if (Array.isArray(parsed) && parsed.length > 0) {
             result.catalog_collections_config = parsed;
           }
-        } catch {}
+        } catch { }
       }
       if (item.key === 'catalog_featured_product_ids' && item.value) {
         try {
@@ -185,7 +185,7 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
           if (Array.isArray(parsed)) {
             result.catalog_featured_product_ids = parsed;
           }
-        } catch {}
+        } catch { }
       }
       if (item.key === 'seo_meta_title') result.seo_meta_title = item.value || undefined;
       if (item.key === 'seo_meta_description') result.seo_meta_description = item.value || undefined;
