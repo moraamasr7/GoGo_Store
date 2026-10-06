@@ -68,12 +68,12 @@ export default async function HomePage() {
   )}`;
 
   return (
-    <div className="flex flex-col gap-8 sm:gap-14 md:gap-20 pb-12 sm:pb-16">
+    <div className="flex flex-col gap-10 sm:gap-16 md:gap-24 pb-14 sm:pb-20">
       
       {/* ========================================================================= */}
       {/* 1. HERO SECTION: قطع ديكورية وهدايا معمولـة بتركيز ودقة                    */}
       {/* ========================================================================= */}
-      <section className="relative pt-3 sm:pt-8 md:pt-12 overflow-hidden">
+      <section className="relative pt-3 sm:pt-8 md:pt-12 pb-6 sm:pb-8 overflow-hidden">
         <div className="max-w-6xl mx-auto px-3.5 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-14 items-center">
             
@@ -193,24 +193,25 @@ export default async function HomePage() {
       {/* 2. VISUAL CATEGORIES GRID: الأقسام الرئيسية السريعة                       */}
       {/* ========================================================================= */}
       {settings.section_categories_enabled !== false && (
-        <section className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-4 sm:space-y-6">
+        <section className="relative py-8 sm:py-12 bg-sand-100/60 dark:bg-stone-900/40 border-y border-sand-200/70 dark:border-stone-800/80">
+          <div className="max-w-6xl mx-auto px-3.5 sm:px-6 w-full space-y-5 sm:space-y-7">
           
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
-            <div>
-              <span className="text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400">
-                اختاري واكتشفي معروضاتنا 🌸
-              </span>
-              <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
-                أقسام وتشكيلات المتجر
-              </h2>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-2 border-b border-sand-200/50 dark:border-stone-800/50">
+              <div>
+                <span className="text-[11px] sm:text-xs font-bold text-brass-600 dark:text-brass-400">
+                  اختاري واكتشفي معروضاتنا 🌸
+                </span>
+                <h2 className="text-xl sm:text-3xl font-black text-stone-900 dark:text-white tracking-tight">
+                  أقسام وتشكيلات المتجر
+                </h2>
+              </div>
+              <Link href="/products" className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white flex items-center gap-1">
+                <span>تصفحي كافة القطع</span>
+                <ArrowLeft className="w-3.5 h-3.5" />
+              </Link>
             </div>
-            <Link href="/products" className="text-xs font-bold text-stone-600 dark:text-stone-400 hover:text-stone-950 dark:hover:text-white flex items-center gap-1">
-              <span>تصفحي كافة القطع</span>
-              <ArrowLeft className="w-3.5 h-3.5" />
-            </Link>
-          </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-4">
             {categoriesList.map((cat) => (
               <Link
                 key={cat.key}
@@ -241,6 +242,7 @@ export default async function HomePage() {
             ))}
           </div>
 
+          </div>
         </section>
       )}
 
