@@ -146,6 +146,9 @@ export async function getPublicSettings(): Promise<StorePublicSettings> {
     for (const item of data) {
       if (item.key === 'store_name') result.store_name = item.value;
       if (item.key === 'store_subtitle') result.store_subtitle = item.value;
+      if (item.key === 'header_logo_url') result.header_logo_url = item.value || undefined;
+      if (item.key === 'brand_mark') result.brand_mark = item.value || undefined;
+      if (item.key === 'favicon_url') result.favicon_url = item.value || undefined;
       if (item.key === 'whatsapp_number') result.whatsapp_number = item.value;
       if (item.key === 'contact_email') result.contact_email = item.value;
       if (item.key === 'instagram_url') result.instagram_url = item.value;

@@ -23,6 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const storeTitle = settings.seo_meta_title || `${settings.store_name || 'Gogo Designs'} | تحف وديكورات منزلية مصنوعة يدوياً بتركيز ودقة 🤍`;
   const storeDesc = settings.seo_meta_description || 'متجر Gogo Designs للتحف والديكورات المنزلية وأطقم الهدايا المصبوبة يدوياً. صواني تقديم، مباخر، شمعدانات، كوسترات، وفازات بتشطيب ناعم وألوان هادئة ونقش مخصص بالاسم.';
   const ogImage = settings.seo_og_image_url || settings.hero_banner_url || `${siteUrl}/og-image.jpg`;
+  const favicon = settings.favicon_url || '/favicon.ico';
 
   return {
     metadataBase: new URL(siteUrl),
@@ -31,6 +32,11 @@ export async function generateMetadata(): Promise<Metadata> {
       template: `%s | ${settings.store_name || 'Gogo Designs'}`,
     },
     description: storeDesc,
+    icons: {
+      icon: favicon,
+      shortcut: favicon,
+      apple: favicon,
+    },
     keywords: [
       "صواني ديكورية",
       "كوسترات",
@@ -194,13 +200,18 @@ export default async function RootLayout({
             <CartProvider>
               <Header 
                 logoUrl={settings.header_logo_url} 
+                brandMark={settings.brand_mark}
                 storeName={settings.store_name}
                 whatsappNumber={settings.whatsapp_number}
               />
               <main className="flex-1">
                 {children}
               </main>
-              <Footer logoUrl={settings.header_logo_url} storeName={settings.store_name} />
+              <Footer 
+                logoUrl={settings.header_logo_url} 
+                brandMark={settings.brand_mark}
+                storeName={settings.store_name} 
+              />
             </CartProvider>
           )}
         </ThemeProvider>

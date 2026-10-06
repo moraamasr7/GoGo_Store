@@ -7,13 +7,15 @@ import Image from 'next/image';
 
 interface FooterProps {
   logoUrl?: string;
+  brandMark?: string;
   storeName?: string;
 }
 
-export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
+export default async function Footer({ logoUrl, brandMark, storeName }: FooterProps = {}) {
   const settings = await getPublicSettings();
   const whatsappUrl = generateWhatsAppInquiryUrl(settings.whatsapp_number);
   const activeLogo = logoUrl || settings.header_logo_url;
+  const activeBrandMark = brandMark || settings.brand_mark || 'G';
   const activeStoreName = storeName || settings.store_name;
 
   return (
@@ -35,7 +37,7 @@ export default async function Footer({ logoUrl, storeName }: FooterProps = {}) {
                 </div>
               ) : (
                 <div className="w-9 h-9 rounded-xl bg-brass-500 flex items-center justify-center text-stone-950 font-black text-base shadow-xs">
-                  G
+                  {activeBrandMark}
                 </div>
               )}
               <h3 className="font-extrabold text-white text-base sm:text-lg tracking-wide">{activeStoreName}</h3>

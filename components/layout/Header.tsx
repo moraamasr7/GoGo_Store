@@ -24,11 +24,12 @@ import Image from 'next/image';
 
 interface HeaderProps {
   logoUrl?: string;
+  brandMark?: string;
   storeName?: string;
   whatsappNumber?: string;
 }
 
-export default function Header({ logoUrl, storeName, whatsappNumber = '201150014792' }: HeaderProps) {
+export default function Header({ logoUrl, brandMark, storeName, whatsappNumber = '201150014792' }: HeaderProps) {
   const pathname = usePathname();
   const { itemCount } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -100,7 +101,7 @@ export default function Header({ logoUrl, storeName, whatsappNumber = '201150014
                 </div>
               ) : (
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-stone-900 dark:bg-stone-800 flex items-center justify-center text-sand-50 shadow-xs border border-stone-700/40">
-                  <span className="font-extrabold text-sm sm:text-base tracking-wider text-brass-400">G</span>
+                  <span className="font-extrabold text-sm sm:text-base tracking-wider text-brass-400">{brandMark || 'G'}</span>
                 </div>
               )}
               <div className="flex flex-col">
