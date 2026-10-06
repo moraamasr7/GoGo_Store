@@ -161,7 +161,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      
+
       {/* Header */}
       <div className="mb-4 sm:mb-6 space-y-1.5 sm:space-y-2">
         <div className="flex items-center gap-2">
@@ -205,7 +205,7 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
             <span>كوّني طقمك بنفسك</span>
           </Link>
           <a
-            href="https://wa.me/201012345678?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%B7%D9%84%D8%A8%20%D8%AE%D8%A7%D8%B5"
+            href="https://wa.me/201150014792?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%AA%D9%86%D9%81%D9%8A%D8%B0%20%D8%B7%D9%84%D8%A8%20%D8%AE%D8%A7%D8%B5"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:underline px-2 py-1"
@@ -222,11 +222,10 @@ export default async function ProductsPage({ searchParams }: ProductsPageProps) 
           <Link
             key={tab.id}
             href={tab.href}
-            className={`whitespace-nowrap px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs font-bold transition-all duration-200 active:scale-95 ${
-              tab.active
+            className={`whitespace-nowrap px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl sm:rounded-2xl text-[11px] sm:text-xs font-bold transition-all duration-200 active:scale-95 ${tab.active
                 ? 'bg-stone-900 dark:bg-brass-500 text-sand-50 dark:text-stone-950 shadow-md shadow-stone-900/10 dark:shadow-brass-500/20 -translate-y-0.5'
                 : 'bg-white dark:bg-stone-900 text-stone-700 dark:text-stone-300 hover:border-brass-500/50 dark:hover:border-brass-400/50 hover:text-stone-950 dark:hover:text-white border border-stone-200/90 dark:border-stone-800 shadow-xs'
-            }`}
+              }`}
           >
             {tab.label}
           </Link>
